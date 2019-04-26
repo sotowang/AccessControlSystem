@@ -22,6 +22,16 @@ create table user
 )
 ;
 
+```
 
+# User
+整体API
+```markdown
+GET /users  展现用户列表   list.html
+GET  /users/{id}  展现用户  view.html
+GET /users/form 新增或修改用户 form.html
+POST /users 用于新增或修改用户请求处理 成功后重定向到list.html页面
+GET /users/delete/{id} 删除用户  成功后重定向到list.html页面
+GET /users/modify/{id} 根据cardId 获取相应用户，返回form页面来执行修改
 
 ```
