@@ -8,31 +8,30 @@
 </head>
 
 <body>
-<!--<div th:replace="~{../fragments/header :: header}"></div>-->
 <h3 th:text="${userModel.title}">用户信息</h3>
 <div>
     <a href="/users/form.html" th:href="@{/users/form}">创建用户</a>
 </div>
-<!--<table border="1">-->
-    <!--<thead>-->
-    <!--<tr>-->
-        <!--<td>ID</td>-->
-        <!--<td>Email</td>-->
-        <!--<td>Name</td>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-    <!--<tr th:if="${userModel.userList.size()} eq 0">-->
+<table border="1">
+    <thead>
+    <tr>
+        <td>账号</td>
+        <td>姓名</td>
+        <td>性别</td>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<tr th:if="${userModel.userList.length()} eq 0">-->
         <!--<td colspan="3">没有用户信息！</td>-->
     <!--</tr>-->
-    <!--<tr th:each="user : ${userModel.userList}">-->
-        <!--<td th:text="${user.id}"></td>-->
-        <!--<td th:text="${user.email}"></td>-->
-        <!--<td><a th:href="@{'/users/'+${user.id}}" th:text="${user.name}"></a></td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-<!--</table>-->
-<!--<div th:replace="~{fragments/footer :: footer}"></div>-->
+    <tr th:each="user : ${userModel.userList}">
+        <td th:text="${user.cardid}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.sex}"></td>
+        <td><a th:href="@{'/users/'+${user.cardid}}" th:text="${user.name}"></a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 
 </html>

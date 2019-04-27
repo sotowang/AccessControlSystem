@@ -56,8 +56,8 @@ public class UserController {
 
         return new ModelAndView("users/form", "userModel", model);
     }
-//
-//
+
+
     /**
      * 保存用户
      * @param user
@@ -68,35 +68,35 @@ public class UserController {
         UserEntity res = userService.save(user);
         return new ModelAndView("redirect:/users");
     }
-//
-//
-//    /**
-//     * 删除用户
-//     * @param id
-//     * @return
-//     */
-//    @GetMapping(value = "delete/{id}")
-//    public ModelAndView delete(@PathVariable("cardid") String id) {
-//        userService.deleteUserByCardid(id);
-//        return new ModelAndView("redirect:/users");
-//    }
-//
-//    /**
-//     * 获取修改用户的界面
-//     * @param id
-//     * @param model
-//     * @return
-//     */
-//    @GetMapping(value = "modify/{id}")
-//    public ModelAndView modifyForm(@PathVariable("cardid") String id, Model model) {
-//        UserEntity user = userService.findUserByCardid(id);
-//
-//        model.addAttribute("user", user);
-//        model.addAttribute("title", "修改用户");
-//
-//        return new ModelAndView("users/form", "userModel", model);
-//    }
-//
+
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "delete/{cardid}")
+    public ModelAndView delete(@PathVariable("cardid") String id) {
+        userService.deleteUserByCardid(id);
+        return new ModelAndView("redirect:/users");
+    }
+
+    /**
+     * 获取修改用户的界面
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "modify/{cardid}")
+    public ModelAndView modifyForm(@PathVariable("cardid") String id, Model model) {
+        UserEntity user = userService.findUserByCardid(id);
+
+        model.addAttribute("user", user);
+        model.addAttribute("title", "修改用户");
+
+        return new ModelAndView("users/form", "userModel", model);
+    }
+
 
 
 }
