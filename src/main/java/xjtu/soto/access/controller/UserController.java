@@ -1,6 +1,8 @@
 package xjtu.soto.access.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,6 +11,7 @@ import xjtu.soto.access.service.UserService;
 
 @RestController
 @RequestMapping("/users")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -33,7 +36,7 @@ public class UserController {
      * @return
      */
     @GetMapping("{id}")
-    public ModelAndView view(@PathVariable("cardid") String id,Model model ) {
+    public ModelAndView view(@PathVariable("id") String id, Model model ) {
         UserEntity user = userService.findUserByCardid(id);
 
         model.addAttribute("user", user);
@@ -53,8 +56,8 @@ public class UserController {
 
         return new ModelAndView("users/form", "userModel", model);
     }
-
-
+//
+//
     /**
      * 保存用户
      * @param user
@@ -65,35 +68,35 @@ public class UserController {
         UserEntity res = userService.save(user);
         return new ModelAndView("redirect:/users");
     }
-
-
-    /**
-     * 删除用户
-     * @param id
-     * @return
-     */
-    @GetMapping(value = "delete/{id}")
-    public ModelAndView delete(@PathVariable("cardid") String id) {
-        userService.deleteUserByCardid(id);
-        return new ModelAndView("redirect:/users");
-    }
-
-    /**
-     * 获取修改用户的界面
-     * @param id
-     * @param model
-     * @return
-     */
-    @GetMapping(value = "modify/{id}")
-    public ModelAndView modifyForm(@PathVariable("cardid") String id, Model model) {
-        UserEntity user = userService.findUserByCardid(id);
-
-        model.addAttribute("user", user);
-        model.addAttribute("title", "修改用户");
-
-        return new ModelAndView("users/form", "userModel", model);
-    }
-
+//
+//
+//    /**
+//     * 删除用户
+//     * @param id
+//     * @return
+//     */
+//    @GetMapping(value = "delete/{id}")
+//    public ModelAndView delete(@PathVariable("cardid") String id) {
+//        userService.deleteUserByCardid(id);
+//        return new ModelAndView("redirect:/users");
+//    }
+//
+//    /**
+//     * 获取修改用户的界面
+//     * @param id
+//     * @param model
+//     * @return
+//     */
+//    @GetMapping(value = "modify/{id}")
+//    public ModelAndView modifyForm(@PathVariable("cardid") String id, Model model) {
+//        UserEntity user = userService.findUserByCardid(id);
+//
+//        model.addAttribute("user", user);
+//        model.addAttribute("title", "修改用户");
+//
+//        return new ModelAndView("users/form", "userModel", model);
+//    }
+//
 
 
 }

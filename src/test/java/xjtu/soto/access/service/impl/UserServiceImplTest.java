@@ -1,5 +1,6 @@
 package xjtu.soto.access.service.impl;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class UserServiceImplTest {
     @Autowired
     UserServiceImpl userService;
 
-    @Autowired
-    UserRepository userRepository;
+//    @Autowired
+//    UserRepository userRepository;
 
     @Test
     public void deleteUserByCardid() {
@@ -29,12 +30,13 @@ public class UserServiceImplTest {
 
     @Test
     public void findUserByCardid() {
-        userRepository.findByCardid("3118311061");
+        UserEntity userEntity = userService.findUserByCardid("3118311061");
+        Assert.assertEquals(userEntity.getName(), "王松涛");
     }
 
     @Test
     public void findUserByName() {
-        userRepository.findByName("sotowang");
+        userService.findUserByName("sotowang");
     }
 
     @Test
@@ -45,9 +47,8 @@ public class UserServiceImplTest {
 
     @Test
     public void save() {
-        UserEntity user = new UserEntity("3118311063", "test1", 1, "软件学院", "password");
-
-        userRepository.save(user);
+        UserEntity user = new UserEntity("3118311064", "test1", 1, "软件学院", "password");
+        userService.save(user);
     }
 
 }
