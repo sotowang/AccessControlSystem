@@ -5,14 +5,14 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Thymeleaf in action</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+
 </head>
+
 
 <body>
 <h3 th:text="${userModel.title}">用户信息</h3>
-<div>
-    <a href="/users/form.html" th:href="@{/users/form}">创建用户</a>
-</div>
-<table border="1">
+<table class="table table-conense table-hovered">
     <thead>
     <tr>
         <td>账号</td>
@@ -29,6 +29,11 @@
         <td th:text="${user.name}"></td>
         <td th:text="${user.sex}"></td>
         <td><a th:href="@{'/users/'+${user.cardid}}" th:text="${user.name}"></a></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <a class="btn btn-primary" href="/users/form.html" th:href="@{/users/form}">创建用户</a>
+        </td>
     </tr>
     </tbody>
 </table>
