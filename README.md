@@ -35,3 +35,16 @@ GET /users/delete/{id} 删除用户  成功后重定向到list.html页面
 GET /users/modify/{id} 根据cardId 获取相应用户，返回form页面来执行修改
 
 ```
+
+
+#权限管理
+
+* MainController
+
+1. 访问根路径或/index时，跳转到index.html
+2. 访问/login路径时，跳转到login.html
+3. 登陆失败时，重定向到/login-error路径，最终跳到login.html页面。其中，在页面中绑定了错误的信息
+
+
+
+
