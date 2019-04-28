@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserEntity> findAll() {
-        return userRepository.findAll(new PageRequest(1, 20, new Sort(new Sort.Order(Sort.Direction.ASC, "name"))));
+    public List<UserEntity> findAll() {
+        return userRepository.findAll();
     }
 
     @Transactional

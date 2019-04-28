@@ -4,22 +4,70 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>Thymeleaf in action</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.1/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.1/css/bootstrap.css" rel="stylesheet">
+    <title th:text="${userModel.title}">查看用户</title>
 </head>
 
 <body>
-<!--<div th:replace="~{fragments/header :: header}"></div>-->
-<h3 th:text="${userModel.title}">waylau</h3>
-<div>
-    <P><strong>ID:</strong><span th:text="${userModel.user.cardid}"></span></P>
-    <P><strong>Name:</strong><span th:text="${userModel.user.name}"></span></P>
-    <P><strong>Sex:</strong><span th:text="${userModel.user.sex}"></span></P>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        卡号
+                    </th>
+                    <th>
+                        姓名
+                    </th>
+                    <th>
+                        性别
+                    </th>
+                    <th>
+                        权限
+                    </th>
+                    <th>状态</th>
+                    <th>身份</th>
+                    <th>学院</th>
+                    <th>创建/修改时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="success">
+                    <td th:text="${userModel.user.cardid}"></td>
+                    <td th:text="${userModel.user.name}"></td>
+                    <td th:text="${userModel.user.sex}"></td>
+                    <td th:text="${userModel.user.permission}"></td>
+                    <td th:text="${userModel.user.status}"></td>
+                    <td th:text="${userModel.user.identity}"></td>
+                    <td th:text="${userModel.user.department}"></td>
+                    <td th:text="${userModel.user.time}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="row clearfix">
+                <div class="col-md-6 column">
+                    <button type="button" th:href="@{'/users/delete/'+${userModel.user.cardid}}" class="btn btn-default btn-block active btn-info">删除</button>
+                </div>
+                <div class="col-md-6 column">
+                    <button type="button"  class="btn btn-default btn-block active btn-info"><a th:href="@{'/users/modify/'+${userModel.user.cardid}}">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!--<div th:replace="~{fragments/header :: header}"></div>-->
 <div>
     <a th:href="@{'/users/delete/'+${userModel.user.cardid}}">删除</a>
     <a th:href="@{'/users/modify/'+${userModel.user.cardid}}">修改</a>
 </div>
 <!--<div th:replace="~{fragments/footer :: footer}"></div>-->
+
+
+
+
 </body>
 
 </html>

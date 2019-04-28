@@ -37,7 +37,7 @@ public class UserEntity {
         this.sex = sex;
         this.department = department;
         this.password = password;
-        this.permission = UserPermissionEnum.USER.getCode();
+        this.permission = UserPermissionEnum.STUDENT.getCode();
         this.identity = UserIdentityEnum.STUDENT.getCode();
         this.status = UserStatusEnum.NORMAL.getCode();
     }

@@ -20,6 +20,7 @@
         <td>性别</td>
     </tr>
     </thead>
+
     <tbody>
     <!--<tr th:if="${userModel.userList.size()} eq 0">-->
         <!--<td colspan="3">没有用户信息！</td>-->
@@ -28,7 +29,7 @@
         <td th:text="${user.cardid}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.sex}"></td>
-        <td><a th:href="@{'/users/'+${user.cardid}}" th:text="${user.name}"></a></td>
+        <td><a th:href="@{'/users/'+${user.cardid}}" th:text="查看"></a></td>
     </tr>
     <tr>
         <td colspan="3">

@@ -16,7 +16,7 @@ public interface UserService {
     List<UserEntity> findUserByName(String name);
 
     //查询所有用户
-    Page<UserEntity> findAll();
+    List<UserEntity> findAll();
 
 
     //保存用户

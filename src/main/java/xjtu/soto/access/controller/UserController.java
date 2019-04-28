@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import xjtu.soto.access.pojo.UserEntity;
 import xjtu.soto.access.service.UserService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 @Slf4j
@@ -24,7 +26,8 @@ public class UserController {
      */
     @GetMapping
     public ModelAndView list(Model model) {
-        model.addAttribute("userList", userService.findAll());
+        List<UserEntity> userlist = userService.findAll();
+        model.addAttribute("userList", userlist);
         model.addAttribute("title", "用户管理");
         return new ModelAndView("users/list", "userModel", model);
     }
