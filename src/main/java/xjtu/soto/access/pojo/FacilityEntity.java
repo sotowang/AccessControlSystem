@@ -19,8 +19,8 @@ public class FacilityEntity {
     private Integer status;
     private String startTime;
     private String endTime;
-
-
+    private String ipAddr;
+    private String serverIp;
 
 
 }

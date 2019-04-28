@@ -8,6 +8,8 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <mapping class="xjtu.soto.access.pojo.UserEntity"/>
     <mapping class="xjtu.soto.access.pojo.FacilityEntity"/>
+    <mapping class="xjtu.soto.access.pojo.RecordEntity"/>
+    <mapping class="xjtu.soto.access.pojo.WhitelistEntity"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
