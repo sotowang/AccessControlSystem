@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>Thymeleaf in action</title>
+    <title>查看</title>
 
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
     <!-- Bootstrap core CSS-->
@@ -17,61 +17,89 @@
     <link href="../module/css/sb-admin.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!--<div th:replace="~{fragments/header :: header}"></div>-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <form action="/users" th:action="@{/users}" method="POST" th:object="${userModel.user}" role="form">
-                <div class="form-group">
-                    <label>
-                        <h3 th:text="${userModel.title}">sotowang</h3>
+<div th:replace="~{./mainframe :: header}"></div>
 
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label for="cardid">
-                        账号：
-                    </label>
-                    <input type="text" id="cardid" name="cardid" th:value="*{cardid}" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="name">
-                        姓名：
-                    </label>
-                    <input type="text" id="name" name="name" th:value="*{name}" class="form-control">
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">门禁设置管理</a>
+            </li>
+            <li class="breadcrumb-item active">信息查询</li>
+        </ol>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <form action="/users" th:action="@{/users}" method="POST" th:object="${userModel.user}" role="form">
+                        <div class="form-group">
+                            <label>
+                                <!--<h3 th:text="${userModel.title}">查看信息</h3>-->
 
-                </div>
-                <div class="form-group">
-                    <label for="password">
-                        密码
-                    </label>
-                    <input type="password" id="password" name="password" th:value="*{password}" class="form-control">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardid">
+                                账号：
+                            </label>
+                            <input type="text" id="cardid" name="cardid" th:value="*{cardid}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">
+                                姓名：
+                            </label>
+                            <input type="text" id="name" name="name" th:value="*{name}" class="form-control">
 
-                </div>
-                <div class="form-group">
-                    <label for="department">
-                        部门/学院
-                    </label>
-                    <input type="text" id="department" name="department" th:value="*{department}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">
+                                密码
+                            </label>
+                            <input type="password" id="password" name="password" th:value="*{password}" class="form-control">
 
-                </div>
-                <div class="form-group">
-                    <label for="sex">
-                        性别：
-                    </label>
-                    <input type="text" id="sex" name="sex" th:value="*{sex}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="department">
+                                部门/学院
+                            </label>
+                            <input type="text" id="department" name="department" th:value="*{department}" class="form-control">
 
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="提交" class="btn btn-primary">
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">
+                                性别：
+                            </label>
+                            <input type="text" id="sex" name="sex" th:value="*{sex}" class="form-control">
 
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="提交" class="btn btn-primary">
+
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 <!--<div th:replace="~{fragments/footer :: footer}"></div>-->
+
+<!-- Bootstrap core JavaScript-->
+<script src="../module/vendor/jquery/jquery.min.js"></script>
+<script src="../module/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="../module/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="../module/vendor/chart.js/Chart.min.js"></script>
+<script src="../module/vendor/datatables/jquery.dataTables.js"></script>
+<script src="../module/vendor/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../module/js/sb-admin.min.js"></script>
+<!-- Custom scripts for this page-->
+<script src="../module/js/sb-admin-datatables.min.js"></script>
+<script src="../module/js/sb-admin-charts.min.js"></script>
 </body>
 
 </html>

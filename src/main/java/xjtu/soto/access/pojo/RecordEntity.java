@@ -10,11 +10,12 @@ import java.util.Objects;
 @Table(name = "record", schema = "access", catalog = "")
 public class RecordEntity {
     @Id
-    private int recordId;
+    private Long recordId;
     private Long fid;
     private String cardid;
     private Timestamp time;
     private Integer type;
+    private String name;
 
 
 }
