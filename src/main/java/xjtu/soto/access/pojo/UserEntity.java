@@ -16,7 +16,7 @@ public class UserEntity {
     @Id
     private String cardid;
 
-    private String time;
+    private Date time;
     private String name;
 
     private Integer sex;
@@ -31,7 +31,8 @@ public class UserEntity {
     }
 
     public UserEntity(String cardid, String name, Integer sex, String department, String password) {
-        this.time = String.valueOf(new Date().getTime());
+        this.time = new Date();
+
         this.cardid = cardid;
         this.name = name;
         this.sex = sex;

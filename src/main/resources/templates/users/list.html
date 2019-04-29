@@ -289,7 +289,12 @@
                         <tr th:each="user : ${userModel.userList}">
                             <td th:text="${user.cardid}"></td>
                             <td th:text="${user.name}"></td>
-                            <td th:text="${user.sex}"></td>
+                            <div th:if="${user.sex} eq 1">
+                                <td>男</td>
+                            </div>
+                            <div th:if="${user.sex} eq 2">
+                                <td>女</td>
+                            </div>
                             <td><a th:href="@{'/users/'+${user.cardid}}" th:text="查看"></a></td>
                         </tr>
 
