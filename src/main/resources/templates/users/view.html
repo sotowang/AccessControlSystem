@@ -3,14 +3,27 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <meta charset="UTF-8"/>
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.1/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.1/css/bootstrap.css" rel="stylesheet">
-    <title th:text="${userModel.title}">查看用户</title>
+    meta charset="UTF-8"/>
+    <title>Thymeleaf in action</title>
+
+    <!--<link href="../module/css/sb-admin.css" rel="stylesheet" >-->
+    <!--<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/datatables/1.10.19/css/dataTables.bootstrap4.css" rel="stylesheet">-->
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap core CSS-->
+    <link href="../module/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <!--<link href="../module/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+    <!-- Page level plugin CSS-->
+    <link href="../module/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="../module/css/sb-admin.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-
+<div th:include="mainframe :: common"></div>
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
