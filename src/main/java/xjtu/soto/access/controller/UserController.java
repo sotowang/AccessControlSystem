@@ -2,7 +2,6 @@ package xjtu.soto.access.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -100,6 +99,12 @@ public class UserController {
         return new ModelAndView("users/form", "userModel", model);
     }
 
+    @GetMapping(value = "add")
+    public ModelAndView add(Model model) {
+        model.addAttribute("user", new UserEntity());
+        model.addAttribute("title", "创建用户");
+        return new ModelAndView("users/add", "userModel", model);
+    }
 
 
 }
