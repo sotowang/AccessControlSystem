@@ -36,35 +36,36 @@
                             <th>地点</th>
                             <th>开始时间</th>
                             <th>结束时间</th>
-                            <th>是/否VIP</th>
+                            <th>VIP</th>
                             <th>操作</th>
                         </tr>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>3118311061</td>
-                            <td>软件学院</td>
-                            <td>2019-4-28</td>
-                            <td>2019-5-28</td>
-                            <td>1</td>
+                        <tr th:each="whitelist : ${whitelistModel.whiteLists}">
+                            <td th:text="${whitelist.wid}">1</td>
+                            <td th:text="${whitelist.cardid}">3118311061</td>
+                            <td th:text="${whitelist.locate}">软件学院</td>
+                            <td th:text="${#dates.format(whitelist.startDate,'yyyy-MM-dd')}">2019-4-28</td>
+                            <td th:text="${#dates.format(whitelist.endDate,'yyyy-MM-dd')}">2019-5-28</td>
+                            <div th:switch="${whitelist.vip}">
+                                <td th:case="1">是</td>
+                                <td th:case="0">否</td>
+                            </div>
+                            <td>
+                                <a th:href="@{'/whitelist/modify/'+${whitelist.wid}}">修改</a>
+                                <a th:href="@{'/whitelist/delete/'+${whitelist.wid}}">删除</a>
+                            </td>
                         </tr>
-
 
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="card-footer small text-muted" th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}" >版权保留xjtuse</div>
+            <div class="card-footer small text-muted" th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}" >版权保留xjtuse</div>
         </div>
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
     <footer class="sticky-footer">
-        <div class="container">
-            <div class="text-center">
-                <small>Copyright © Your Website 2017 / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></small>
-            </div>
-        </div>
     </footer>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">

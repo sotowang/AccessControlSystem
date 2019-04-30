@@ -69,7 +69,8 @@
                             <td th:text="${userModel.user.department}"></td>
                             <td th:text="${userModel.user.time}"></td>
                             <td><a th:href="@{'/users/delete/'+${userModel.user.cardid}}">删除</a>
-                                <a th:href="@{'/users/modify/'+${userModel.user.cardid}}">修改</a></td>
+                                <a th:href="@{'/users/modify/'+${userModel.user.cardid}}">修改</a>
+                            </td>
                         </tr>
                     </table>
                 </div>

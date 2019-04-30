@@ -63,7 +63,7 @@
                         <a href="./whitelist/list.html" th:href="@{~/whitelist/list}">白名单查询</a>
                     </li>
                     <li>
-                        <a href="cards.html">Cards</a>
+                        <a href="./whitelist/add.html">白名单添加</a>
                     </li>
                 </ul>
             </li>
@@ -149,7 +149,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <!--<a class="nav-link  " id="messagesDropdown" href="#"  aria-haspopup="true" aria-expanded="false">-->
-                <a class="nav-link" th:text="${#dates.format(#dates.createNow(), 'yyyy MMM dd HH:mm')}"></a>
+                <a class="nav-link" th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"></a>
                 <!--</a>-->
             </li>
             <li class="nav-item">

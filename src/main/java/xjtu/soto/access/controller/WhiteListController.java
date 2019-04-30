@@ -2,12 +2,11 @@ package xjtu.soto.access.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import xjtu.soto.access.pojo.WhitelistEntity;
 import xjtu.soto.access.service.WhiteListService;
+import xjtu.soto.access.service.impl.WhiteListServiceImpl;
 
 import java.util.List;
 
@@ -27,9 +26,19 @@ public class WhiteListController {
         return new ModelAndView("whitelist/list", "whitelistModel", model);
     }
 
-    @GetMapping(value = "save")
-    public ModelAndView save(WhitelistEntity whitelist) {
-        whiteListService.save(whitelist);
-        return new ModelAndView("redirect:/whitelist/list");
+
+    @GetMapping("modify/{wid}")
+    public ModelAndView modify(@PathVariable("wid") Long id, Model model) {
+        WhitelistEntity whitelistEntity = whiteListService.findByID(id);
+
+        model.addAttribute("whiteList", whitelistEntity);
+        model.addAttribute("title", "白名单修改");
+        return new ModelAndView("whitelist/modify", "whitelistModel", model);
+    }
+
+    @PostMapping
+    public ModelAndView saveOrUpdate(WhitelistEntity whitelistEntity) {
+        whiteListService.save(whitelistEntity);
+        return new ModelAndView("redirect:whitelist/list");
     }
 }

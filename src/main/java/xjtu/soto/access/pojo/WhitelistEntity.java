@@ -1,6 +1,7 @@
 package xjtu.soto.access.pojo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,7 +15,12 @@ public class WhitelistEntity {
     private Long wid;
     private String cardid;
     private String locate;
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date startDate;
+
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date endDate;
     private Integer vip;
 
