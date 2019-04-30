@@ -12,6 +12,7 @@ import java.util.Objects;
 @Table(name = "whitelist", schema = "access", catalog = "")
 public class WhitelistEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long wid;
     private String cardid;
     private String locate;
@@ -27,8 +28,7 @@ public class WhitelistEntity {
     public WhitelistEntity() {
     }
 
-    public WhitelistEntity(Long wid, String cardid, String locate, Date startDate, Date endDate, Integer vip) {
-        this.wid = wid;
+    public WhitelistEntity( String cardid, String locate, Date startDate, Date endDate, Integer vip) {
         this.cardid = cardid;
         this.locate = locate;
         this.startDate = startDate;

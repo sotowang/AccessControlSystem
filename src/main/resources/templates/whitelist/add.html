@@ -31,12 +31,6 @@
                 <div class="table-responsive">
                     <form action="/whitelist/add/" th:action="@{/whitelist}" method="POST" role="form">
                         <div class="form-group">
-                            <label for="wid">
-                                ID：
-                            </label>
-                            <input  readonly="readonly" type="text" id="wid" name="wid" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label for="cardid">
                                 卡号：
                             </label>
@@ -58,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="vip">
-                                性别：
+                                VIP：
                             </label>
                                 <!--<input type="text" id="sex" name="sex" value="1" class="form-control">-->
                                 <select id="vip" name="vip">

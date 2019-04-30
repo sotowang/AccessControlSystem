@@ -41,4 +41,11 @@ public class WhiteListController {
         whiteListService.save(whitelistEntity);
         return new ModelAndView("redirect:whitelist/list");
     }
+
+    @GetMapping("/add")
+    public ModelAndView add(Model model) {
+        model.addAttribute("whitelist", new WhitelistEntity());
+        model.addAttribute("title", "添加白名单");
+        return new ModelAndView("whitelist/add", "whitelistMode", model);
+    }
 }

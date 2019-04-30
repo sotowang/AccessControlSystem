@@ -28,6 +28,7 @@ public class WhiteListServiceImpl implements WhiteListService {
     @Override
     @Transactional
     public WhitelistEntity save(WhitelistEntity whitelistEntity) {
+
         return whiteListRepository.save(whitelistEntity);
     }
 
