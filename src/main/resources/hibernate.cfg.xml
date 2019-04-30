@@ -6,11 +6,14 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/access</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <mapping class="xjtu.soto.access.pojo.UserEntity"/>
+      <mapping class="xjtu.soto.access.pojo.UserEntity"/>
     <mapping class="xjtu.soto.access.pojo.FacilityEntity"/>
     <mapping class="xjtu.soto.access.pojo.RecordEntity"/>
     <mapping class="xjtu.soto.access.pojo.WhitelistEntity"/>
-    <!-- <property name="connection.username"/> -->
+      <mapping class="xjtu.soto.access.pojo.SecondLocateEntity"/>
+      <mapping class="xjtu.soto.access.pojo.ThirdLocateEntity"/>
+      <mapping class="xjtu.soto.access.pojo.TopLocateEntity"/>
+      <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

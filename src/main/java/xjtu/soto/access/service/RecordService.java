@@ -30,10 +30,9 @@ public interface RecordService {
     /**
      * 模糊查询
      * @param name
-     * @param pageable
      * @return
      */
-    Page<RecordEntity> findByNameLike(String name, Pageable pageable);
+    List<RecordEntity> findByNameLike(String name);
 
 
 }

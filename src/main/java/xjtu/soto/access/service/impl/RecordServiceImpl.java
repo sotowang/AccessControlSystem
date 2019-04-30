@@ -55,10 +55,10 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Page<RecordEntity> findByNameLike(String name, Pageable pageable) {
+    public List<RecordEntity> findByNameLike(String name) {
         name = "%" + name + "%";
-        Page<RecordEntity> recordEntityPage = recordRepository.findByNameLike(name, pageable);
-        return recordEntityPage;
+        List<RecordEntity> recordEntities = recordRepository.findByNameLike(name);
+        return recordEntities;
     }
 
 }

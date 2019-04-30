@@ -24,5 +24,5 @@ public interface RecordRepository extends JpaRepository<RecordEntity,Long> {
     /**
      * 按名字模糊查找
      */
-    Page<RecordEntity> findByNameLike(String name, Pageable pageable);
+    List<RecordEntity> findByNameLike(String name);
 }
