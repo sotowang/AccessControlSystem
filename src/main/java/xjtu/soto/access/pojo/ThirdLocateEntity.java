@@ -11,12 +11,12 @@ import java.util.Objects;
 public class ThirdLocateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
-    private Integer top;
+    private Long top;
     private String address;
 
-    public ThirdLocateEntity(Integer top, String address) {
+    public ThirdLocateEntity(Long top, String address) {
         this.top = top;
         this.address = address;
     }

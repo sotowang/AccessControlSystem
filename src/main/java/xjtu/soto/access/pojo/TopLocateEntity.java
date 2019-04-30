@@ -10,14 +10,13 @@ import java.util.Objects;
 public class TopLocateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String address;
-    private Integer top;
-    private Integer down;
+    private Long top;
+    private Long down;
 
-    public TopLocateEntity(String address, Integer top) {
+    public TopLocateEntity(String address) {
         this.address = address;
-        this.top = top;
     }
 
     public TopLocateEntity() {

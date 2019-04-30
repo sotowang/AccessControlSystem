@@ -11,15 +11,15 @@ import java.util.Objects;
 public class SecondLocateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private Integer top;
-    private Integer down;
+    private Long id;
+    private Long top;
+    private Long down;
     private String address;
 
     public SecondLocateEntity() {
     }
 
-    public SecondLocateEntity(Integer top, String address) {
+    public SecondLocateEntity(Long top, String address) {
         this.top = top;
         this.address = address;
     }
