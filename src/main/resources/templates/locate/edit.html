@@ -88,7 +88,7 @@
         }
     };
 
-    function addSecondLocate(ele) {
+    function addSecondLocate() {
         var topId = $('#top option:selected').val();
         var address = $('#secondval').val();
         if (topId == '0' || topId == 0 || topId == "") {
@@ -104,6 +104,36 @@
             type:"get",
             success: function (data) {
                 alert("二级工作区添加成功，请刷新页面！")
+                return;
+            },
+            error: function (data) {
+                alert("添加失败！");
+                return;
+            }
+        })
+
+    }
+    function addThirdLocate() {
+        var topId = $('#top option:selected').val();
+        var secondId = $('#second2 option:selected').val();
+        var address = $('#thirdval').val();
+        if (topId == '0' || topId == 0 || topId == "") {
+            alert("请选择一级工作区！");
+            return;
+        }
+        if (secondId == '0' || secondId == 0 || secondId == "") {
+            alert("请选择二级工作区！");
+            return;
+        }
+        if (address == "") {
+            alert("请输入三级工作区！");
+            return;
+        }
+        $.ajax({
+            url: "/locate/save/third/" + secondId + "-" + address,
+            type:"get",
+            success: function (data) {
+                alert("三级工作区添加成功，请刷新页面！")
                 return;
             },
             error: function (data) {
@@ -157,7 +187,7 @@
                             <a onclick="deleteTop('second2')" href="#">删除</a>
 
                             <div class="form-group">
-                                <input class="form-group form-control" type="text" id="secondval">
+                                <input class="form-group" type="text" id="secondval">
                                 <a onclick="addSecondLocate()" href="#">添加二级工作区</a>
                             </div>
                         </div>

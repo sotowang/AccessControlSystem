@@ -99,6 +99,14 @@ public class LocateController {
             secondLocateEntity.setAddress(address);
             secondLocateEntity.setTop(topId);
             secondLocateService.save(secondLocateEntity);
+        } else if (locate.equals("third")) {
+            ThirdLocateEntity thirdLocateEntity = new ThirdLocateEntity();
+            Long secondId = Long.valueOf(address.split("-")[0]);
+            address = address.split("-")[1];
+
+            thirdLocateEntity.setAddress(address);
+            thirdLocateEntity.setTop(secondId);
+            thirdLocateService.save(thirdLocateEntity);
         }
         return "success";
     }
