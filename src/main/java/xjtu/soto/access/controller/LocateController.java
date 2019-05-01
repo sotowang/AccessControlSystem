@@ -59,9 +59,14 @@ public class LocateController {
     @GetMapping(value = "selectByTop/{id}")
     @ResponseBody
     public List<SecondLocateEntity> selectByTop(@PathVariable("id") Long id) {
-        System.out.println(id);
         List<SecondLocateEntity> secondLocateEntities = secondLocateService.findByTop(id);
         return secondLocateEntities;
+    }
+    @GetMapping(value = "selectBySecond/{id}")
+    @ResponseBody
+    public List<ThirdLocateEntity> selectBySecond(@PathVariable("id") Long id) {
+        List<ThirdLocateEntity> thirdLocateEntities = thirdLocateService.findByTop(id);
+        return thirdLocateEntities;
     }
 
 //    @PostMapping

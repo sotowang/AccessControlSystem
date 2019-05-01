@@ -25,13 +25,13 @@
         var id = $('#top option:selected').val();
         var selObj = $('#second2');
         $.ajax({
-            url:"/locate/selectByTop/"+id,
-            type:"get",
-            success:function (data) {
+            url: "/locate/selectByTop/" + id,
+            type: "get",
+            success: function (data) {
                 $("#second2").html("");
                 str = "";
                 var str = "<option disabled='disabled' selected='selected' value=''>--请选择二级工作区--</option>"
-                for ( var i = 0; i < data.length; i++) {
+                for (var i = 0; i < data.length; i++) {
                     str += "<option value='" + data[i].id
                         + "'>" + data[i].address
                         + "</option>";
@@ -39,23 +39,23 @@
                 selObj.append(str);
             },
             error: function (data) {
-                alert("出错了");
-
+                alert("没有啊");
             }
         })
-    }
+    };
 
     function setSelectSecond() {
+        var address = $('#second2 option:selected').text();
         var id = $('#second2 option:selected').val();
         var selObj = $('#third3');
         $.ajax({
-            url:"locate/selectBySecond" + id,
-            type:"get",
-            success:function (data) {
+            url: "/locate/selectBySecond/" + id,
+            type: "get",
+            success: function (data) {
                 $("#third3").html("");
                 str = "";
                 var str = "<option disabled='disabled' selected='selected' value=''>--请选择三级工作区--</option>"
-                for ( var i = 0; i < data.length; i++) {
+                for (var i = 0; i < data.length; i++) {
                     str += "<option value='" + data[i].id
                         + "'>" + data[i].address
                         + "</option>";
@@ -63,11 +63,10 @@
                 selObj.append(str);
             },
             error: function (data) {
-                alert("出错了");
+                alert("没有啊");
             }
         })
-        
-    }
+    };
 </script>
 
 <div th:include="mainframe :: common"></div>
@@ -99,6 +98,7 @@
                                     [[${topAddress.address}]]
                                 </option>
                             </select>
+                            <label
 
                         </div>
                         <div class="form-group">
