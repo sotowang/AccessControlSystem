@@ -6,14 +6,70 @@
     <meta charset="UTF-8"/>
     <title>查看</title>
 
-    <link  href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
-    <link th:href="@{~/module/vendor/bootstrap/css/bootstrap.min.css}" href="../module/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link th:href="@{~/module/vendor/font-awesome/css/font-awesome.min.css}" href="../module/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link th:href="@{~/module/vendor/datatables/dataTables.bootstrap4.css}" href="../module/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <link th:href="@{~/module/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../module/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{~/module/vendor/font-awesome/css/font-awesome.min.css}"
+          href="../module/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link th:href="@{~/module/vendor/datatables/dataTables.bootstrap4.css}"
+          href="../module/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link th:href="@{~/module/css/sb-admin.css}" href="../module/css/sb-admin.css" rel="stylesheet">
+    <script th:src="@{~/module/vendor/jquery/jquery.min.js}" src="../module/vendor/jquery/jquery.min.js"></script>
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<script type="text/javascript">
+    function setSelectTop() {
+        var address = $('#top option:selected').text();
+        var id = $('#top option:selected').val();
+        var selObj = $('#second2');
+        $.ajax({
+            url:"/locate/selectByTop/"+id,
+            type:"get",
+            success:function (data) {
+                $("#second2").html("");
+                str = "";
+                var str = "<option disabled='disabled' selected='selected' value=''>--请选择二级工作区--</option>"
+                for ( var i = 0; i < data.length; i++) {
+                    str += "<option value='" + data[i].id
+                        + "'>" + data[i].address
+                        + "</option>";
+                }
+                selObj.append(str);
+            },
+            error: function (data) {
+                alert("出错了");
+
+            }
+        })
+    }
+
+    function setSelectSecond() {
+        var id = $('#second2 option:selected').val();
+        var selObj = $('#third3');
+        $.ajax({
+            url:"locate/selectBySecond" + id,
+            type:"get",
+            success:function (data) {
+                $("#third3").html("");
+                str = "";
+                var str = "<option disabled='disabled' selected='selected' value=''>--请选择三级工作区--</option>"
+                for ( var i = 0; i < data.length; i++) {
+                    str += "<option value='" + data[i].id
+                        + "'>" + data[i].address
+                        + "</option>";
+                }
+                selObj.append(str);
+            },
+            error: function (data) {
+                alert("出错了");
+            }
+        })
+        
+    }
+</script>
+
 <div th:include="mainframe :: common"></div>
 
 <div class="content-wrapper">
@@ -31,46 +87,57 @@
                 <div class="table-responsive">
                     <form action="/locate/edit" th:action="@{/locate}" method="POST" role="form">
                         <div class="form-group">
-                            <label for="address">
+                            <label for="top">
                                 一级工作区：
                             </label>
-                            <select id="address" >
-                                <div th:each="topAddress : ${locateModel.topLocateList}">
-                                    <option name="top" th:text="${topAddress.address}"></option>
-                                </div>
+                            <select id="top" class="form-group" onchange="setSelectTop()">
+                                <option value="0" disabled="disabled" selected="selected">--请选择一级工作区--</option>
+                                <option th:each="topAddress : ${locateModel.topLocateList}"
+                                        th:value="${topAddress.id}"
+                                        th:text="${topAddress.address}"
+                                         name="top">
+                                    [[${topAddress.address}]]
+                                </option>
                             </select>
 
                         </div>
                         <div class="form-group">
-                            <label for="address">
+                            <label for="second2">
                                 二级工作区：
                             </label>
-                            <select id="address" >
-                                <div th:each="secondAddress : ${locateModel.secondLocateList}">
-                                    <option name="top" th:text="${secondAddress.address}"></option>
-                                </div>
+                            <select class="form-group" id="second2" name="second" onchange="setSelectSecond()">
+
+                                <!--<option value="0" disabled="disabled" id="second2" selected = "selected">&#45;&#45;请选择二级工作区&#45;&#45;</option>-->
+                                <!--<option th:each="secondAddress : ${locateModel.secondLocateList}"-->
+                                        <!--th:value="${secondAddress.id}"-->
+                                        <!--name="top" th:text="${secondAddress.address}">-->
+                                <!--</option>-->
                             </select>
 
                         </div>
                         <div class="form-group">
-                            <label for="address">
+                            <label for="third3">
                                 三级工作区：
                             </label>
-                            <select id="address" >
-                                <div th:each="topAddress : ${locateModel.topLocateList}">
-                                    <option name="top" th:text="${topAddress.address}"></option>
-                                </div>
+                            <select id="third3" class="form-group">
+                                <!--<option value="">&#45;&#45;请选择三级工作区&#45;&#45;</option>-->
+                                <!--<option th:each="thirdAddress : ${locateModel.thirdLocateList}"-->
+                                        <!--th:value="${thirdAddress.id}"-->
+                                        <!--name="top" th:text="${thirdAddress.address}">-->
+                                <!--</option>-->
                             </select>
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" >
                             <!--<input type="submit" value="提交" class="btn btn-primary">-->
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="card-footer small text-muted" th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}" >版权保留xjtuse</div>
+            <div class="card-footer small text-muted"
+                 th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}">版权保留xjtuse
+            </div>
         </div>
     </div>
     <!-- /.container-fluid-->
@@ -86,7 +153,8 @@
         <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -105,11 +173,15 @@
     </div>
     <!-- Bootstrap core JavaScript-->
     <script th:src="@{~/module/vendor/jquery/jquery.min.js}" src="../module/vendor/jquery/jquery.min.js"></script>
-    <script th:src="@{~/module/vendor/bootstrap/js/bootstrap.bundle.min.js}" src="../module/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script th:src="@{~/module/vendor/jquery-easing.min.js}" src="../module/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script th:src="@{~/module/vendor/bootstrap/js/bootstrap.bundle.min.js}"
+            src="../module/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{~/module/vendor/jquery-easing/jquery.easing.min.js}"
+            src="../module/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script th:src="@{~/module/vendor/chart.js/Chart.min.js}" src="../module/vendor/chart.js/Chart.min.js"></script>
-    <script th:src="@{~/module/vendor/datatables/jquery.dataTables.js}" src="../module/vendor/datatables/jquery.dataTables.js"></script>
-    <script th:src="@{~/module/vendor/datatables/dataTables.bootstrap4.js}" src="../module/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script th:src="@{~/module/vendor/datatables/jquery.dataTables.js}"
+            src="../module/vendor/datatables/jquery.dataTables.js"></script>
+    <script th:src="@{~/module/vendor/datatables/dataTables.bootstrap4.js}"
+            src="../module/vendor/datatables/dataTables.bootstrap4.js"></script>
     <script th:src="@{~/module/js/sb-admin.min.js}" src="../module/js/sb-admin.min.js"></script>
     <script th:src="@{~/module/js/sb-admin-datatables.min.js}" src="../module/js/sb-admin-datatables.min.js"></script>
     <script th:src="@{~/module/js/sb-admin-charts.min.js}" src="../module/js/sb-admin-charts.min.js"></script>
