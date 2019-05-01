@@ -2,7 +2,9 @@ package xjtu.soto.access.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xjtu.soto.access.pojo.SecondLocateEntity;
 import xjtu.soto.access.repository.SecondLocateRepository;
 import xjtu.soto.access.service.SecondLocateService;
@@ -25,7 +27,15 @@ public class SecondLocateServiceImpl implements SecondLocateService {
     }
 
     @Override
+    @Transactional
+    @Modifying
     public void deleteById(Long id) {
         secondLocateRepository.delete(id);
+    }
+
+    @Override
+    @Transactional
+    public void save(SecondLocateEntity secondLocateEntity) {
+        secondLocateRepository.save(secondLocateEntity);
     }
 }

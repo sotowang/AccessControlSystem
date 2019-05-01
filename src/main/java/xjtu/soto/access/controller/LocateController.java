@@ -91,6 +91,14 @@ public class LocateController {
             TopLocateEntity topLocateEntity = new TopLocateEntity();
             topLocateEntity.setAddress(address);
             topLocateService.save(topLocateEntity);
+        } else if (locate.equals("second")) {
+            SecondLocateEntity secondLocateEntity = new SecondLocateEntity();
+            Long topId = Long.valueOf(address.split("-")[0]);
+            address = address.split("-")[1];
+
+            secondLocateEntity.setAddress(address);
+            secondLocateEntity.setTop(topId);
+            secondLocateService.save(secondLocateEntity);
         }
         return "success";
     }

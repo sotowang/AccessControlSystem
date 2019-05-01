@@ -88,6 +88,32 @@
         }
     };
 
+    function addSecondLocate(ele) {
+        var topId = $('#top option:selected').val();
+        var address = $('#secondval').val();
+        if (topId == '0' || topId == 0 || topId == "") {
+            alert("请选择一级工作区！");
+            return;
+        }
+        if (address == "") {
+            alert("请输入二级工作区！");
+            return;
+        }
+        $.ajax({
+            url: "/locate/save/second/" + topId + "-" + address,
+            type:"get",
+            success: function (data) {
+                alert("二级工作区添加成功，请刷新页面！")
+                return;
+            },
+            error: function (data) {
+                alert("添加失败！");
+                return;
+            }
+        })
+
+    }
+
 
 </script>
 
@@ -129,6 +155,11 @@
                             <select class="form-group" id="second2" name="second" onchange="setSelectSecond()">
                             </select>
                             <a onclick="deleteTop('second2')" href="#">删除</a>
+
+                            <div class="form-group">
+                                <input class="form-group form-control" type="text" id="secondval">
+                                <a onclick="addSecondLocate()" href="#">添加二级工作区</a>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="third3">
@@ -137,6 +168,11 @@
                             <select id="third3" class="form-group">
                             </select>
                             <a onclick="deleteTop('third3')" href="#">删除</a>
+
+                            <div class="form-group">
+                                <input class="form-group" type="text" id="thirdval">
+                                <a onclick="addThirdLocate()" href="#">添加三级工作区</a>
+                            </div>
                         </div>
                     </form>
                 </div>
