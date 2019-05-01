@@ -30,4 +30,11 @@ public class RoleServiceImpl implements RoleService {
         roleRepository.delete(id);
     }
 
+    @Override
+    @Transactional
+    public IdentityEntity save(IdentityEntity role) {
+        roleRepository.save(role);
+        return null;
+    }
+
 }

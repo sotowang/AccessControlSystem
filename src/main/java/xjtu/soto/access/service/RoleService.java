@@ -9,4 +9,6 @@ public interface RoleService {
     List<IdentityEntity> findAll();
 
     void deleteById(Long id);
+
+    IdentityEntity save(IdentityEntity role);
 }
