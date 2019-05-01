@@ -5,9 +5,18 @@ import lombok.Getter;
 @Getter
 public enum UserIdentityEnum implements CodeEnum {
 
-    STUDENT(1, "学生"),
-    TEACHER(2,"老师"),
-    OTHERS(3,"其他"),;
+    STUDENT(1, "工程硕士"),
+    TEACHER(2,"高中生"),
+    QUJIANG(4,"曲江校区临时人员"),
+    OTHERS(3,"其他"),
+
+
+
+
+
+
+
+    ;
 
     private Integer code;
     private String information;

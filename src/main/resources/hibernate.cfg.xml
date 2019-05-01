@@ -13,6 +13,7 @@
       <mapping class="xjtu.soto.access.pojo.SecondLocateEntity"/>
       <mapping class="xjtu.soto.access.pojo.ThirdLocateEntity"/>
       <mapping class="xjtu.soto.access.pojo.TopLocateEntity"/>
+      <mapping class="xjtu.soto.access.pojo.IdentityEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

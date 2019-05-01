@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${roleModel.title}">Thymeleaf in action</title>
+    <!--公共css-->
+    <div th:include="common_css :: common_css"></div>
+</head>
+
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+<div th:include="mainframe :: common"></div>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" th:text="${roleModel.title}">人员管理</a>
+            </li>
+            <li class="breadcrumb-item active" th:text="${roleModel.subtitle}">信息查询</li>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center"  id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <td>角色</td>
+                        <td colspan="1">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<tr th:if="${userModel.userList.size()} eq 0">-->
+                    <!--<td colspan="3">没有用户信息！</td>-->
+                    <!--</tr>-->
+                    <tr th:each="role : ${roleModel.roleList}">
+                        <td th:text="${role.role}"></td>
+                        <td><a  th:text="删除" th:href="@{'~/role/delete/'+${role.id}}">删除</a></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!--公共js-->
+<div th:include="common_js :: common_js"></div>
+</body>
+
+</html>
