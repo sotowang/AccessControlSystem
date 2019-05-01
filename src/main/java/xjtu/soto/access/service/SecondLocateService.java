@@ -12,4 +12,6 @@ public interface SecondLocateService {
     List<SecondLocateEntity> findAll();
 
     List<SecondLocateEntity> findByTop(Long topId);
+
+    void deleteById(Long id);
 }

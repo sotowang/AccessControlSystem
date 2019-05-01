@@ -17,7 +17,7 @@ public class TopLocateServiceImplTest {
     private TopLocateService topLocateService;
     @Test
     public void save() {
-        TopLocateEntity topLocateEntity = new TopLocateEntity("西安交通大学");
+        TopLocateEntity topLocateEntity = new TopLocateEntity("西安交通大学1");
         topLocateService.save(topLocateEntity);
     }
 

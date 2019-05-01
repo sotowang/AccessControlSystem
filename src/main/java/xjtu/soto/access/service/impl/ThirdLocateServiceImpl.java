@@ -2,7 +2,9 @@ package xjtu.soto.access.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xjtu.soto.access.pojo.ThirdLocateEntity;
 import xjtu.soto.access.repository.ThirdLocateRepository;
 import xjtu.soto.access.service.ThirdLocateService;
@@ -27,6 +29,13 @@ public class ThirdLocateServiceImpl implements ThirdLocateService {
     @Override
     public ThirdLocateEntity save(ThirdLocateEntity thirdLocateEntity) {
         return thirdLocateRepository.save(thirdLocateEntity);
+    }
+
+    @Override
+    @Transactional
+    @Modifying
+    public void deleteById(Long id) {
+        thirdLocateRepository.delete(id);
     }
 
 }

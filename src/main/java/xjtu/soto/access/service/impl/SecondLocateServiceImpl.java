@@ -23,4 +23,9 @@ public class SecondLocateServiceImpl implements SecondLocateService {
     public List<SecondLocateEntity> findByTop(Long topId) {
         return secondLocateRepository.findByTop(topId);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        secondLocateRepository.delete(id);
+    }
 }

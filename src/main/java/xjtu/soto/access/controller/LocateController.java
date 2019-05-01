@@ -12,7 +12,6 @@ import xjtu.soto.access.service.SecondLocateService;
 import xjtu.soto.access.service.ThirdLocateService;
 import xjtu.soto.access.service.TopLocateService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Slf4j
@@ -67,6 +66,22 @@ public class LocateController {
     public List<ThirdLocateEntity> selectBySecond(@PathVariable("id") Long id) {
         List<ThirdLocateEntity> thirdLocateEntities = thirdLocateService.findByTop(id);
         return thirdLocateEntities;
+    }
+
+    @GetMapping(value = "deletetop/{id}")
+    @ResponseBody
+    public void deleteTop(@PathVariable("id") Long id) {
+        topLocateService.deleteById(id);
+    }
+    @GetMapping(value = "deletesecond2/{id}")
+    @ResponseBody
+    public void deleteSecond(@PathVariable("id") Long id) {
+        secondLocateService.deleteById(id);
+    }
+    @GetMapping(value = "deletethird3/{id}")
+    @ResponseBody
+    public void deleteThird(@PathVariable("id") Long id) {
+        thirdLocateService.deleteById(id);
     }
 
 //    @PostMapping

@@ -67,6 +67,28 @@
             }
         })
     };
+
+    function deleteTop(ele) {
+        var address = $('#'+ele+' option:selected').text();
+        var id = $('#'+ele+' option:selected').val();
+        if (id < 0 || id=="") {
+            alert("请选择工作区！")
+        }else {
+            $.ajax({
+                url: "/locate/delete"+ele+"/" + id,
+                type: "get",
+                success: function (data) {
+                    alert("删除成功！")
+                    window.location.href= "/locate/edit.html";
+                },
+                error: function (data) {
+                    alert("删除失败！");
+                }
+            })
+        }
+    };
+
+
 </script>
 
 <div th:include="mainframe :: common"></div>
@@ -94,43 +116,27 @@
                                 <option th:each="topAddress : ${locateModel.topLocateList}"
                                         th:value="${topAddress.id}"
                                         th:text="${topAddress.address}"
-                                         name="top">
+                                        name="top">
                                     [[${topAddress.address}]]
                                 </option>
                             </select>
-                            <label
-
+                            <a onclick="deleteTop('top')" href="#">删除</a>
                         </div>
                         <div class="form-group">
                             <label for="second2">
                                 二级工作区：
                             </label>
                             <select class="form-group" id="second2" name="second" onchange="setSelectSecond()">
-
-                                <!--<option value="0" disabled="disabled" id="second2" selected = "selected">&#45;&#45;请选择二级工作区&#45;&#45;</option>-->
-                                <!--<option th:each="secondAddress : ${locateModel.secondLocateList}"-->
-                                        <!--th:value="${secondAddress.id}"-->
-                                        <!--name="top" th:text="${secondAddress.address}">-->
-                                <!--</option>-->
                             </select>
-
+                            <a onclick="deleteTop('second2')" href="#">删除</a>
                         </div>
                         <div class="form-group">
                             <label for="third3">
                                 三级工作区：
                             </label>
                             <select id="third3" class="form-group">
-                                <!--<option value="">&#45;&#45;请选择三级工作区&#45;&#45;</option>-->
-                                <!--<option th:each="thirdAddress : ${locateModel.thirdLocateList}"-->
-                                        <!--th:value="${thirdAddress.id}"-->
-                                        <!--name="top" th:text="${thirdAddress.address}">-->
-                                <!--</option>-->
                             </select>
-
-                        </div>
-
-                        <div class="form-group" >
-                            <!--<input type="submit" value="提交" class="btn btn-primary">-->
+                            <a onclick="deleteTop('third3')" href="#">删除</a>
                         </div>
                     </form>
                 </div>
