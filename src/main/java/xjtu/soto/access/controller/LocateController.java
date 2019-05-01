@@ -31,13 +31,13 @@ public class LocateController {
     @GetMapping(value = "/edit")
     public ModelAndView edit(Model model) {
         List<TopLocateEntity> topLocateEntities = topLocateService.findAll();
-        List<SecondLocateEntity> secondLocateEntities = secondLocateService.findAll();
-        List<ThirdLocateEntity> thirdLocateEntities = thirdLocateService.findAll();
+//        List<SecondLocateEntity> secondLocateEntities = secondLocateService.findAll();
+//        List<ThirdLocateEntity> thirdLocateEntities = thirdLocateService.findAll();
         model.addAttribute("title", "门禁设置管理");
-        model.addAttribute("subtitle", "查看工作区");
+        model.addAttribute("subtitle", "设置工作区");
         model.addAttribute("topLocateList", topLocateEntities);
-        model.addAttribute("secondLocateList", secondLocateEntities);
-        model.addAttribute("thirdLocateList", thirdLocateEntities);
+//        model.addAttribute("secondLocateList", secondLocateEntities);
+//        model.addAttribute("thirdLocateList", thirdLocateEntities);
         return new ModelAndView("locate/edit", "locateModel", model);
     }
 
@@ -84,6 +84,14 @@ public class LocateController {
         thirdLocateService.deleteById(id);
     }
 
-//    @PostMapping
-//    public ModelAndView save()
+    @GetMapping(value = "save/{locate}/{address}")
+    @ResponseBody
+    public String save(@PathVariable("locate") String locate, @PathVariable("address") String address) {
+        if (locate.equals("top")) {
+            TopLocateEntity topLocateEntity = new TopLocateEntity();
+            topLocateEntity.setAddress(address);
+            topLocateService.save(topLocateEntity);
+        }
+        return "success";
+    }
 }
