@@ -25,6 +25,7 @@ public class RoleController {
         model.addAttribute("title", "角色管理");
         model.addAttribute("subtitle", "角色列表");
         List<IdentityEntity> identityEntities = roleService.findAll();
+        model.addAttribute("msg", " ");
 
         model.addAttribute("roleList", identityEntities);
 
@@ -49,7 +50,7 @@ public class RoleController {
         model.addAttribute("subtitle", "角色新增");
         model.addAttribute("role", role);
         model.addAttribute("msg", " ");
-        return new ModelAndView("/role/add", "roleModel",model);
+        return new ModelAndView("redirect:/role/list", "roleModel",model);
     }
 
     @PostMapping(value = "save")
@@ -62,7 +63,7 @@ public class RoleController {
             roleService.save(role);
             model.addAttribute("msg", "添加成功!");
         }
-        return new ModelAndView("/role/add", "roleModel", model);
+        return new ModelAndView("redirect:/role/list", "roleModel", model);
 
     }
 }

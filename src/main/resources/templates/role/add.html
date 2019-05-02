@@ -23,7 +23,7 @@
             <li class="breadcrumb-item active" th:text="${roleModel.subtitle}">信息查询</li>
         </ol>
         <form action="/role/save" method="post" th:action="@{~/role/save}">
-            <div class="col-md-6 column">
+            <div class="col-md-12 text-center column">
                 <input type="text" style="width: auto" name="role" class="form-group" placeholder="新增角色">
                 <button type="submit"  class="btn btn-group-sm btn-primary">确定</button>
             </div>

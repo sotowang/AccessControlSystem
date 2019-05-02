@@ -180,10 +180,7 @@
                             </select>
                             <a onclick="deleteTop('second2')" href="#">删除</a>
 
-                            <div class="form-group">
-                                <input class="form-group" type="text" id="secondval">
-                                <a onclick="addSecondLocate()" href="#">添加二级工作区</a>
-                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="third3">
@@ -193,12 +190,17 @@
                             </select>
                             <a onclick="deleteTop('third3')" href="#">删除</a>
 
-                            <div class="form-group">
-                                <input class="form-group" type="text" id="thirdval">
-                                <a onclick="addThirdLocate()" href="#">添加三级工作区</a>
-                            </div>
+
                         </div>
                     </form>
+                    <div class="form-group">
+                        <input class="form-group" type="text" id="secondval">
+                        <a onclick="addSecondLocate()" href="#">添加二级工作区</a>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-group" type="text" id="thirdval">
+                        <a onclick="addThirdLocate()" href="#">添加三级工作区</a>
+                    </div>
                 </div>
             </div>
             <div class="card-footer small text-muted"
@@ -218,25 +220,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--公共js-->
     <div th:include="common_js :: common_js"></div>
 </div>

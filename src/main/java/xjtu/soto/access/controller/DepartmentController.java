@@ -37,7 +37,7 @@ public class DepartmentController {
     }
 
     @PostMapping(value = "save")
-    public ModelAndView save( DepartmentEntity departmentEntity, Model model, BindingResult bindingResult) {
+    public ModelAndView save( DepartmentEntity departmentEntity, Model model) {
         model.addAttribute("title", "学院（部门管理）");
         model.addAttribute("subtitle", "学院添加");
 
