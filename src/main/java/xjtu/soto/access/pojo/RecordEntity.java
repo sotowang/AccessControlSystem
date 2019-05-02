@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @Data
 @Entity
 @Table(name = "record", schema = "access", catalog = "")
@@ -14,16 +15,11 @@ public class RecordEntity {
     private Long fid;
     private String cardid;
     private Date time;
+    //出入标志
     private Integer type;
     private String name;
+    private Long role;
+    private Long department;
+    private Long locate;
 
-    public RecordEntity() {
-    }
-
-    public RecordEntity(String cardid, Date time, Integer type, String name) {
-        this.cardid = cardid;
-        this.time = time;
-        this.type = type;
-        this.name = name;
-    }
 }

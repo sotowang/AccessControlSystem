@@ -31,18 +31,12 @@ public class RecordController {
     }
 
 
-    @GetMapping(value = "show_search")
+    @GetMapping(value = "search")
     public ModelAndView showSearch(Model model) {
         model.addAttribute("title", "流水信息管理");
         model.addAttribute("subtitle", "流水信息查询");
         return new ModelAndView("/record/search","recordModel", model);
     }
 
-    @GetMapping(value = "search")
-    public ModelAndView search(Model model) {
-        model.addAttribute("title", "流水信息管理");
-        model.addAttribute("subtitle", "流水信息查询");
-        return new ModelAndView("/record/search","recordModel", model);
-    }
 
 }

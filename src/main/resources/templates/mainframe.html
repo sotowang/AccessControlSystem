@@ -9,7 +9,6 @@
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <div th:fragment="common">
-<!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.html">门禁管理系统</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,9 +26,6 @@
                     <li>
                         <a href="./role/list.html" th:href="@{~/role/list}">角色管理</a>
                     </li>
-                    <!--<li>-->
-                        <!--<a href="./role/add.html" th:href="@{~/role/add}">角色添加</a>-->
-                    <!--</li>-->
                     <li>
                         <a href="./department/add.html" th:href="@{~/department/add}">学院（部门）管理</a>
                     </li>
@@ -88,7 +84,7 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                     <li>
-                        <a href="./record/search.html" th:href="@{~/record/show_search}">流水信息查询</a>
+                        <a href="./record/search.html" th:href="@{~/record/search}">流水信息查询</a>
                     </li>
                     <li>
                         <a href="#">门禁流水统计</a>
@@ -108,9 +104,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <!--<a class="nav-link  " id="messagesDropdown" href="#"  aria-haspopup="true" aria-expanded="false">-->
                 <a class="nav-link fa-calendar" th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"></a>
-                <!--</a>-->
             </li>
             <li class="nav-item">
                 <a class="nav-link  fa-user " th:text="'用户'">
