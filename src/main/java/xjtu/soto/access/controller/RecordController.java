@@ -18,14 +18,31 @@ import java.util.List;
 public class RecordController {
 
     @Autowired
-    RecordService recordService;
-    @GetMapping
+    private RecordService recordService;
+
+
+    @GetMapping("list")
     public ModelAndView list(Model model) {
         List<RecordEntity> recordEntities = recordService.findAll();
 
         model.addAttribute("recordList", recordEntities);
 
         return new ModelAndView("/record/list", "recordModel", model);
+    }
+
+
+    @GetMapping(value = "show_search")
+    public ModelAndView showSearch(Model model) {
+        model.addAttribute("title", "流水信息管理");
+        model.addAttribute("subtitle", "流水信息查询");
+        return new ModelAndView("/record/search","recordModel", model);
+    }
+
+    @GetMapping(value = "search")
+    public ModelAndView search(Model model) {
+        model.addAttribute("title", "流水信息管理");
+        model.addAttribute("subtitle", "流水信息查询");
+        return new ModelAndView("/record/search","recordModel", model);
     }
 
 }

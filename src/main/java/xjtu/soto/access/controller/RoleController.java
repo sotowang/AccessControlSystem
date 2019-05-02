@@ -57,7 +57,7 @@ public class RoleController {
         model.addAttribute("title", "角色管理");
         model.addAttribute("subtitle", "角色新增");
         if (bindingResult.hasErrors()) {
-            model.addAttribute("msg", "添加失败!");
+            model.addAttribute("msg", "添加失败!请重试！");
         }else{
             roleService.save(role);
             model.addAttribute("msg", "添加成功!");

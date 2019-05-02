@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${recordModel.title}"></title>
+    <div th:include="common_css :: common_css"></div>
+
 </head>
-<body>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<div th:include="mainframe :: common"></div>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" th:text="${recordModel.title}">流水管理</a>
+            </li>
+            <li class="breadcrumb-item active" th:text="${recordModel.subtitle}">信息查询</li>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="card-body">
+                    <div th:style="'display: none'" class="table-responsive">
+                        <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>设备ID</th>
+                                <th>卡号</th>
+                                <th>姓名</th>
+                                <th>部门/学院</th>
+                                <th>刷卡时间</th>
+                                <th>类型</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>156</td>
+                                <td>3118311061</td>
+                                <td>王松涛</td>
+                                <td>软件学院</td>
+                                <td>2019-4-28</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td><a href="#">修改</a> &nbsp <a href="#">删除</a></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <div th:include="common_js :: common_js"></div>
+    </div>
+</div>
 
 </body>
 </html>
