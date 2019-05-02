@@ -22,15 +22,15 @@
             </li>
             <li class="breadcrumb-item active" th:text="${roleModel.subtitle}">信息查询</li>
         </ol>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3">
-            <input type="text" class="form-control" placeholder="新增角色">
-        </div>
-        <div class="card mb-3">
-
-
-            <button type="submit" class="btn btn-success"  value="添加" th:text="添加"/>
-        </div>
+        <form action="/role/save" method="post" th:action="@{~/role/save}">
+            <div class="col-md-6 column">
+                <input type="text" style="width: auto" name="role" class="form-group" placeholder="新增角色">
+                <button type="submit"  class="btn btn-group-sm btn-primary">确定</button>
+            </div>
+            <div>
+                <p class="form-group" th:text="${roleModel.msg}" style="color: red"></p>
+            </div>
+        </form>
     </div>
 </div>
 <a class="scroll-to-top rounded" href="#page-top">
