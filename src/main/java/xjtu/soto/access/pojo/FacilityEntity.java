@@ -21,6 +21,7 @@ public class FacilityEntity {
     private String endTime;
     private String ipAddr;
     private String serverIp;
+    private String name;
 
 
 }
