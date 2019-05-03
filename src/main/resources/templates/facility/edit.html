@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${facilityModel.title}">查看</title>
+    <!--公共css-->
+    <div th:include="common_css :: common_css"></div>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<div th:include="mainframe :: common"></div>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" th:text="${facilityModel.title}">流水管理</a>
+            </li>
+            <li class="breadcrumb-item active" th:text="${facilityModel.subtitle}">信息查询</li>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form action="/users" th:action="@{~/facility/save}" method="POST" th:object="${facilityModel.facility}" role="form">
+                        <div class="form-group">
+                            <label for="name">
+                                名字：
+                            </label>
+                            <input hidden="hidden" name="fid" th:value="*{fid}">
+                            <input  type="text" id="name" name="name" th:value="*{name}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="locate">
+                                地点：
+                            </label>
+                            <select id="locate" name="locate" th:value="*{locate}" class="form-group">
+                                <option th:each="locate1:${facilityModel.thirdLocateList}"
+                                        th:value="${locate1.id}" th:text="${locate1.address}"
+                                th:selected="${locate1.id} == *{locate}">单进</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="startTime">
+                                开始时间
+                            </label>
+                            <input type="time" id="startTime" name="startTime" th:value="${#dates.format(facilityModel.facility.startTime,'HH:mm:ss')}" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="endTime">
+                                关闭时间
+                            </label>
+                            <input type="time" id="endTime" name="endTime" th:value="${#dates.format(facilityModel.facility.endTime,'HH:mm:ss')}" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="permission">
+                                权限：
+                            </label>
+                            <input type="text" id="permission" name="permission" th:value="*{permission}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">
+                                类型：
+                            </label>
+                            <select id="type" name="type" th:value="*{type}" class="form-group">
+                                <option  th:selected="*{type =='单进' }" th:value="1">单进</option>
+                                <option  th:selected="*{type =='单出' }" th:value="2">单出</option>
+                                <option  th:selected="*{type =='双向' }" th:value="3">双向</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">
+                                状态：
+                            </label>
+                            <select id="status" name="status" th:value="*{status}" class="form-group">
+                                <option  th:selected="*{status ==1 }" th:value="1">关闭</option>
+                                <option  th:selected="*{status ==2 }" th:value="2">开放</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ipAddr">
+                                本机IP：
+                            </label>
+                            <input type="text" id="ipAddr" name="ipAddr" th:value="*{ipAddr}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="serverIp">
+                                服务器IP：
+                            </label>
+                            <input type="text" id="serverIp" name="serverIp" th:value="*{serverIp}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="提交" class="btn btn-primary">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!--公共js-->
+    <div th:include="common_js :: common_js"></div>
+</div>
+
+</body>
+
+</html>

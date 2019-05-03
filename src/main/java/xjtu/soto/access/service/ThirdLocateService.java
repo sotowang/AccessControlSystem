@@ -12,4 +12,6 @@ public interface ThirdLocateService {
     ThirdLocateEntity save(ThirdLocateEntity thirdLocateEntity);
 
     void deleteById(Long id);
+
+    ThirdLocateEntity findById(Long id);
 }

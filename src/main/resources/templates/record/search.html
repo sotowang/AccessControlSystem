@@ -27,8 +27,15 @@
                         <div class="form-group" style="width: auto">
                             <div class="form-group" style="width: auto">
                                 <label for="third_locate" class="col-md-3 form-group">工作区</label>
-                                <input type="text" name="locate" class="form-group col-md-4"
-                                       id="third_locate"/>
+                                <select id="third_locate" class="form-group">
+                                    <option value="0" disabled="disabled" selected="selected">--请选择三级工作区--</option>
+                                    <option th:each="thirdAddress : ${recordModel.thirdLocateList}"
+                                            th:value="${thirdAddress.id}"
+                                            th:text="${thirdAddress.address}"
+                                            name="third_locate">
+                                        --请选择三级工作区--
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group" style="width: auto">
@@ -39,12 +46,27 @@
 
                         <div class="form-group" style="width: auto">
                             <label for="role" class="col-md-3 form-group">身份</label>
-                            <input style="width: auto" type="text" name="role" class="form-group col-md-4" id="role"/>
+                            <select id="role" class="form-group">
+                                <option value="0" disabled="disabled" selected="selected">--请选择身份--</option>
+                                <option th:each="role : ${recordModel.roleList}"
+                                        th:value="${role.id}"
+                                        th:text="${role.role}"
+                                        name="role">
+                                    --请选择部门--
+                                </option>
+                            </select>
                         </div>
                         <div class="form-group" style="width: auto">
                             <label for="department" class="col-md-3 form-group">部门</label>
-                            <input style="width: auto" type="text" name="department" class="form-group col-md-4"
-                                   id="department"/>
+                            <select id="department" class="form-group">
+                                <option value="0" disabled="disabled" selected="selected">--请选择部门--</option>
+                                <option th:each="department : ${recordModel.departmentList}"
+                                        th:value="${department.id}"
+                                        th:text="${department.name}"
+                                        name="department">
+                                    --请选择部门--
+                                </option>
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -54,7 +76,7 @@
                             <div class="form-group" style="width: auto">
                                 <label for="cardid" class="col-md-3 form-group">卡号</label>
                                 <input type="text" name="cardid" class="form-group col-md-4"
-                                       id="cardid"/>
+                                       id="cardid" placeholder="选填"/>
                             </div>
                         </div>
                         <div class="form-group" style="width: auto">

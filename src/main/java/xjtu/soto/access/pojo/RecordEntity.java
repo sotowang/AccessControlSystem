@@ -1,6 +1,7 @@
 package xjtu.soto.access.pojo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +15,7 @@ public class RecordEntity {
     private Long recordId;
     private Long fid;
     private String cardid;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date time;
     //出入标志
     private Integer type;

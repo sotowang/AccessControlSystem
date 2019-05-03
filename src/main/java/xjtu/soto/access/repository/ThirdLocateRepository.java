@@ -10,5 +10,7 @@ public interface ThirdLocateRepository extends JpaRepository<ThirdLocateEntity, 
 
     List<ThirdLocateEntity> findByTop(Long topId);
 
+    ThirdLocateEntity findById(Long id);
+
 
 }

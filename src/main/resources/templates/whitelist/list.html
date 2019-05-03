@@ -44,7 +44,7 @@
                             <td th:text="${#dates.format(whitelist.startDate,'yyyy-MM-dd')}">2019-4-28</td>
                             <td th:text="${#dates.format(whitelist.endDate,'yyyy-MM-dd')}">2019-5-28</td>
                             <div th:switch="${whitelist.vip}">
-                                <td th:case="1">是</td>
+                                <td th:case="1" style="color: red">是</td>
                                 <td th:case="0">否</td>
                             </div>
                             <td>

@@ -38,4 +38,9 @@ public class ThirdLocateServiceImpl implements ThirdLocateService {
         thirdLocateRepository.delete(id);
     }
 
+    @Override
+    public ThirdLocateEntity findById(Long id) {
+        return thirdLocateRepository.findById(id);
+    }
+
 }
