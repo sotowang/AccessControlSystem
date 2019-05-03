@@ -58,4 +58,15 @@ public class RecordServiceImpl implements RecordService {
         return recordEntities;
     }
 
+
+    @Override
+    public List<RecordEntity> findByTypeAndRoleAndDepartmentAndFidAndLocateAndTimeBetween(Integer type, Long role, Long department, Long fid,Long locate, Date time1, Date time2) {
+        return recordRepository.findByTypeAndRoleAndDepartmentAndFidAndLocateAndTimeBetween(type, role, department, fid, locate, time1, time2);
+    }
+
+    @Override
+    public List<RecordEntity> findByTypeAndRoleAndDepartmentAndCardidAndFidAndLocateAndTimeBetween(Integer type, Long role, Long department, String cardid, Long fid,Long locate, Date time1, Date time2) {
+        return recordRepository.findByTypeAndRoleAndDepartmentAndCardidAndFidAndLocateAndTimeBetween(type, role, department, cardid, fid, locate,time1, time2);
+    }
+
 }

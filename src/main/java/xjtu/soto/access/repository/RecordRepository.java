@@ -25,4 +25,10 @@ public interface RecordRepository extends JpaRepository<RecordEntity,Long> {
      * 按名字模糊查找
      */
     List<RecordEntity> findByNameLike(String name);
+
+    List<RecordEntity> findByTypeAndRoleAndDepartmentAndFidAndLocateAndTimeBetween(
+            Integer type,Long role,Long department,Long fid,Long locate,Date time1,Date time2);
+
+    List<RecordEntity> findByTypeAndRoleAndDepartmentAndCardidAndFidAndLocateAndTimeBetween(
+            Integer type,Long role,Long department,String cardid,Long fid,Long locate,Date time1,Date time2);
 }
