@@ -19,6 +19,8 @@ public interface RecordService {
 
     List<RecordEntity> findByCardId(String cardId);
 
+    List<RecordEntity> findByCardIdAndTimeBetween(String cardid, Date time1, Date time2);
+
     List<RecordEntity> findByFId(Long fid);
 
 

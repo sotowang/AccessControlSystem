@@ -37,6 +37,11 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public List<RecordEntity> findByCardIdAndTimeBetween(String cardId,Date time1,Date time2) {
+        return recordRepository.findByCardidAndTimeBetween(cardId, time1, time2);
+    }
+
+    @Override
     public List<RecordEntity> findByFId(Long fid) {
         return recordRepository.findByFid(fid);
     }

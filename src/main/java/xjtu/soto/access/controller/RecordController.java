@@ -64,6 +64,67 @@ public class RecordController {
 
 
     @ResponseBody
+    @GetMapping(value = "findIndividual/{params}")
+    public Map<String, Object> findIndividual(@PathVariable String params, Model model) throws ParseException {
+
+
+        Map<String, String> paramMap = ParamsUtil.parse(params);
+        Map<String, Object> res = new HashMap<>();
+        res.put("msg", "error");
+
+
+        String cardid = paramMap.get("cardid");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date time1 = sdf.parse(paramMap.get("time1"));
+        Date time2 = sdf.parse(paramMap.get("time2"));
+
+        List<RecordEntity> recordEntityList = recordService.findByCardIdAndTimeBetween(cardid,time1,time2);
+        res.put("msg", "success");
+
+        for (RecordEntity record : recordEntityList) {
+            //设置部门名称
+            Long departmentId = record.getDepartment();
+            String departmentName = departmentService.findById(departmentId).getName();
+            record.setDepartmentName(departmentName);
+
+            Long locateId = record.getLocate();
+            String locateName = thirdLocateService.findById(locateId).getAddress();
+            record.setLocateName(locateName);
+
+            String cardId = record.getCardid();
+            UserEntity user = userService.findUserByCardid(cardId);
+            String sex = user.getSex() == 1 ? "男" : "女";
+            record.setSex(sex);
+            record.setName(user.getName());
+
+            Long roleId = user.getIdentity();
+            String roleName = roleService.findById(roleId).getRole();
+            record.setRoleName(roleName);
+
+            Long fId = record.getFid();
+            String facilityName = facilityService.findById(fId).getName();
+            record.setFacilityName(facilityName);
+
+            SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String timeString = smf.format(record.getTime());
+
+            record.setTimeString(timeString);
+
+        }
+        res.put("recordList", recordEntityList);
+
+        return res;
+    }
+
+
+    @GetMapping(value = "individualSearch")
+    public ModelAndView individualSearch(Model model) {
+        model.addAttribute("title", "流水信息管理");
+        model.addAttribute("subtitle", "个人流水查询");
+        return new ModelAndView("/record/individual", "recordModel", model);
+    }
+
+    @ResponseBody
     @GetMapping(value = "find/{params}")
     public Map<String, Object> search1(@PathVariable String params, Model model) throws ParseException {
 
@@ -80,8 +141,6 @@ public class RecordController {
         Long fid = Long.valueOf(paramMap.get("fid"));
         Long locate = Long.valueOf(paramMap.get("locate"));
 
-
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 
@@ -91,7 +150,7 @@ public class RecordController {
         List<RecordEntity> recordEntityList;
         if ("选填".equals(paramMap.get("cardid"))) {
             recordEntityList = recordService.findByTypeAndRoleAndDepartmentAndFidAndLocateAndTimeBetween(
-                    type, role, department, fid,locate, time1, time2
+                    type, role, department, fid, locate, time1, time2
             );
             res.put("msg", "success");
         } else {
@@ -130,15 +189,10 @@ public class RecordController {
             record.setTimeString(timeString);
 
         }
-
-
         res.put("recordList", recordEntityList);
 
         return res;
     }
-
-
-
 
 
 }

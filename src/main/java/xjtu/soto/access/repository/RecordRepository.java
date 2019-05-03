@@ -31,4 +31,6 @@ public interface RecordRepository extends JpaRepository<RecordEntity,Long> {
 
     List<RecordEntity> findByTypeAndRoleAndDepartmentAndCardidAndFidAndLocateAndTimeBetween(
             Integer type,Long role,Long department,String cardid,Long fid,Long locate,Date time1,Date time2);
+
+    List<RecordEntity> findByCardidAndTimeBetween(String cardid, Date time1, Date time2);
 }
