@@ -6,7 +6,7 @@
     <meta charset="UTF-8"/>
     <title>Thymeleaf in action</title>
     <!--公共css-->
-<div th:include="common_css :: common_css"></div>
+    <div th:include="common_css :: common_css"></div>
 </head>
 
 
@@ -22,50 +22,42 @@
             </li>
             <li class="breadcrumb-item active">信息查询</li>
         </ol>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center"  id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <td>账号</td>
-                            <td>姓名</td>
-                            <td>性别</td>
-                            <td>操作</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!--<tr th:if="${userModel.userList.size()} eq 0">-->
-                        <!--<td colspan="3">没有用户信息！</td>-->
-                        <!--</tr>-->
-                        <tr th:each="user : ${userModel.userList}">
-                            <td th:text="${user.cardid}"></td>
-                            <td th:text="${user.name}"></td>
-                            <div th:if="${user.sex} eq 1">
-                                <td>男</td>
-                            </div>
-                            <div th:if="${user.sex} eq 2">
-                                <td>女</td>
-                            </div>
-                            <td><a th:href="@{'~/users/'+${user.cardid}}" th:text="查看"></a></td>
-                        </tr>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <td>账号</td>
+                    <td>姓名</td>
+                    <td>性别</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${userModel.userList}">
+                    <td th:text="${user.cardid}"></td>
+                    <td th:text="${user.name}"></td>
+                    <div th:if="${user.sex} eq 1">
+                        <td>男</td>
+                    </div>
+                    <div th:if="${user.sex} eq 2">
+                        <td>女</td>
+                    </div>
+                    <td><a th:href="@{'~/users/'+${user.cardid}}" th:text="查看"></a></td>
+                </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-        <div class="container">
-        </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-    </a>
+</div>
+<footer class="sticky-footer">
+    <div class="container">
+    </div>
+</footer>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
 
 <!--公共js-->
 <div th:include="common_js :: common_js"></div>

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import xjtu.soto.access.pojo.UserEntity;
+import xjtu.soto.access.service.DepartmentService;
 import xjtu.soto.access.service.UserService;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private DepartmentService departmentService;
 
     /**
      * 查询所有用户
@@ -40,9 +44,12 @@ public class UserController {
     @GetMapping("{id}")
     public ModelAndView view(@PathVariable("id") String id, Model model ) {
         UserEntity user = userService.findUserByCardid(id);
-
+        Long departmentId = user.getDepartment();
+//        String departmentName = departmentService.findById(departmentId).getName();
         model.addAttribute("user", user);
-        model.addAttribute("title", "查看用户");
+//        model.addAttribute("departmentName", departmentName);
+        model.addAttribute("title", "人员管理");
+        model.addAttribute("subtitle", "查看用户");
         return new ModelAndView("users/view", "userModel", model);
     }
 

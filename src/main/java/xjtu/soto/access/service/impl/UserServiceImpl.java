@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         String cardId = user.getCardid();
         String name = user.getName();
         String password = user.getPassword();
-        String department = user.getDepartment();
+        Long department = user.getDepartment();
         int sex = user.getSex();
         if (cardId == null) {
             log.error("要保存的cardId为空");

@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/js/**", "/fonts/**", "/index", "/login")
                 .permitAll()
                 //需要相应的角色才能访问
-                .antMatchers("/users/**").hasRole(UserPermissionEnum.ADMIN.getCode().toString())
+//                .antMatchers("/users/**").hasRole(UserPermissionEnum.ADMIN.getCode().toString())
                 .antMatchers("h2-console/**").permitAll()
                 .and()
                 .formLogin()

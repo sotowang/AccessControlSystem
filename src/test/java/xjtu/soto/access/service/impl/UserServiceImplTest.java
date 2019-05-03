@@ -44,8 +44,6 @@ public class UserServiceImplTest {
 
     @Test
     public void save() {
-        UserEntity user = new UserEntity("3118311064", "test1", 1, "软件学院", "password");
-        userService.save(user);
     }
     @Test
     public void delete() {

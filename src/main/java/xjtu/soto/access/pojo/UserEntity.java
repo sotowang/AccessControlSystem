@@ -22,7 +22,7 @@ public class UserEntity {
     private Integer sex;
     private Integer status;
     private Integer permission;
-    private String department;
+    private Long department;
     private Long identity;
 
     private String password;
@@ -30,7 +30,7 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String cardid, String name, Integer sex, String department, String password) {
+    public UserEntity(String cardid, String name, Integer sex, Long department, String password) {
         this.time = new Date();
 
         this.cardid = cardid;
