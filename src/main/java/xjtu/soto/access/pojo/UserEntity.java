@@ -23,7 +23,7 @@ public class UserEntity {
     private Integer status;
     private Integer permission;
     private String department;
-    private Integer identity;
+    private Long identity;
 
     private String password;
 
@@ -39,7 +39,6 @@ public class UserEntity {
         this.department = department;
         this.password = password;
         this.permission = UserPermissionEnum.STUDENT.getCode();
-        this.identity = UserIdentityEnum.STUDENT.getCode();
         this.status = UserStatusEnum.NORMAL.getCode();
     }
 

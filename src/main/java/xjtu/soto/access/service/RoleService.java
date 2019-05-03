@@ -11,4 +11,6 @@ public interface RoleService {
     void deleteById(Long id);
 
     IdentityEntity save(IdentityEntity role);
+
+    IdentityEntity findById(Long id);
 }

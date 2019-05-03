@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import xjtu.soto.access.pojo.*;
 import xjtu.soto.access.service.*;
+import xjtu.soto.access.utils.DateUtil;
 import xjtu.soto.access.utils.ParamsUtil;
 
-import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +32,8 @@ public class RecordController {
     private RoleService roleService;
     @Autowired
     private FacilityService facilityService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("list")
     public ModelAndView list(Model model) {
@@ -79,7 +81,6 @@ public class RecordController {
         Long locate = Long.valueOf(paramMap.get("locate"));
 
 
-        String departmentName = departmentService.findById(department).getName();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -100,7 +101,33 @@ public class RecordController {
         }
 
         for (RecordEntity record : recordEntityList) {
+            //设置部门名称
+            Long departmentId = record.getDepartment();
+            String departmentName = departmentService.findById(departmentId).getName();
             record.setDepartmentName(departmentName);
+
+            Long locateId = record.getLocate();
+            String locateName = thirdLocateService.findById(locateId).getAddress();
+            record.setLocateName(locateName);
+
+            String cardId = record.getCardid();
+            UserEntity user = userService.findUserByCardid(cardId);
+            String sex = user.getSex() == 1 ? "男" : "女";
+            record.setSex(sex);
+            record.setName(user.getName());
+
+            Long roleId = user.getIdentity();
+            String roleName = roleService.findById(roleId).getRole();
+            record.setRoleName(roleName);
+
+            Long fId = record.getFid();
+            String facilityName = facilityService.findById(fId).getName();
+            record.setFacilityName(facilityName);
+
+            SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String timeString = smf.format(record.getTime());
+
+            record.setTimeString(timeString);
 
         }
 

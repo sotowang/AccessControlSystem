@@ -37,4 +37,9 @@ public class RoleServiceImpl implements RoleService {
         return null;
     }
 
+    @Override
+    public IdentityEntity findById(Long id) {
+        return roleRepository.findById(id);
+    }
+
 }

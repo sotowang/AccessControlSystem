@@ -34,32 +34,51 @@
                 url:"/record/find/"+params,
                 type:'get',
                 success:function(data){
-                    // alert(data["msg"]);
                     var recordList = data['recordList'];
                     var tbody = document.getElementById("tbody1");
                     for(index in recordList){
                         var obj = (recordList[index]);
+                        console.log(obj);
                         var tr = document.createElement("tr");
 
                         var tdFID = document.createElement("td");
-                        tdFID.textContent = obj['fid']
+                        tdFID.textContent = obj['facilityName']
 
                         var tdCardID = document.createElement("td");
-                        tdCardID.textContent = obj['cardid']
+                        tdCardID.textContent = obj['cardid'];
+
                         var tdName = document.createElement("td");
-                        tdName.textContent = obj['name']
+                        tdName.textContent = obj['name'];
+
+
+                        var tdSex = document.createElement("td");
+                        tdSex.textContent = obj['sex'];
+
+                        var tdRole = document.createElement("td");
+                        tdRole.textContent = obj['roleName'];
 
                         var tdDept = document.createElement("td");
-                        tdDept.textContent = obj['departmentName']
+                        tdDept.textContent = obj['departmentName'];
+
                         var tdTime = document.createElement("td");
-                        tdTime.textContent = obj['time']
+                        tdTime.textContent = obj['timeString'];
+
+
                         var tdType = document.createElement("td");
-                        tdType.textContent = obj['type']
+                        if (obj['type'] == "1") {
+                            tdType.textContent = "进";
+                        }else if (obj['type'] == "2") {
+                            tdType.textContent = "出";
+                        }
+
                         var tdLocation = document.createElement("td");
-                        tdLocation.textContent = obj['locate']
+                        tdLocation.textContent = obj['locateName'];
+
                         tr.appendChild(tdFID);
                         tr.appendChild(tdCardID);
                         tr.appendChild(tdName);
+                        tr.appendChild(tdSex);
+                        tr.appendChild(tdRole);
                         tr.appendChild(tdDept);
                         tr.appendChild(tdTime);
                         tr.appendChild(tdType);
@@ -200,13 +219,15 @@
                         <table class="table table-bordered text-center" id="dataTable111" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>设备ID</th>
+                                <th>设备</th>
                                 <th>卡号</th>
                                 <th>姓名</th>
+                                <th>性别</th>
+                                <th>身份</th>
                                 <th>部门/学院</th>
                                 <th>刷卡时间</th>
-                                <th>工作区</th>
                                 <th>类型</th>
+                                <th>工作区</th>
                             </tr>
                             <tbody id="tbody1">
                             <!--<tr id="cloneTr">-->

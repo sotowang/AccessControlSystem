@@ -15,7 +15,7 @@ public class RecordEntity {
     private Long recordId;
     private Long fid;
     private String cardid;
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
     //出入标志
     private Integer type;
@@ -26,5 +26,21 @@ public class RecordEntity {
 
     @Transient
     private String departmentName;
+
+    @Transient
+    private String locateName;
+
+    @Transient
+    private String sex;
+
+    @Transient
+    private String roleName;
+
+    @Transient
+    private String facilityName;
+
+    @Transient
+    private String timeString;
+
 
 }
