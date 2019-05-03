@@ -12,8 +12,6 @@
 
 <script type="text/javascript">
     function search() {
-
-        $("#tbody1").empty();
         var locate = $("#third_locate option:selected").val();
         var type = $("#type option:selected").val();
         var role = $("#role option:selected").val();
@@ -35,40 +33,6 @@
                 type:'get',
                 success:function(data){
                     // alert(data["msg"]);
-                    var recordList = data['recordList'];
-                    var tbody = document.getElementById("tbody1");
-                    for(index in recordList){
-                        var obj = (recordList[index]);
-                        var tr = document.createElement("tr");
-
-                        var tdFID = document.createElement("td");
-                        tdFID.textContent = obj['fid']
-
-                        var tdCardID = document.createElement("td");
-                        tdCardID.textContent = obj['cardid']
-                        var tdName = document.createElement("td");
-                        tdName.textContent = obj['name']
-
-                        var tdDept = document.createElement("td");
-                        tdDept.textContent = obj['departmentName']
-                        var tdTime = document.createElement("td");
-                        tdTime.textContent = obj['time']
-                        var tdType = document.createElement("td");
-                        tdType.textContent = obj['type']
-                        var tdLocation = document.createElement("td");
-                        tdLocation.textContent = obj['locate']
-                        tr.appendChild(tdFID);
-                        tr.appendChild(tdCardID);
-                        tr.appendChild(tdName);
-                        tr.appendChild(tdDept);
-                        tr.appendChild(tdTime);
-                        tr.appendChild(tdType);
-                        tr.appendChild(tdLocation);
-                        tbody.appendChild(tr);
-                    }
-
-
-
                 },
                 error: function (data) {
                     alert("查找失败！请重试！")
@@ -194,36 +158,40 @@
 
 
         <div class="card mb-3">
-            <!--<div class="card-header">-->
+            <div class="card-header">
                 <div class="card-body">
-                    <div  class="table-responsive">
-                        <table class="table table-bordered text-center" id="dataTable111" width="100%" cellspacing="0">
+                    <div th:style="'display: none'" class="table-responsive">
+                        <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>设备ID</th>
                                 <th>卡号</th>
                                 <th>姓名</th>
                                 <th>部门/学院</th>
                                 <th>刷卡时间</th>
-                                <th>工作区</th>
                                 <th>类型</th>
+                                <th>状态</th>
+                                <th>操作</th>
                             </tr>
-                            <tbody id="tbody1">
-                            <!--<tr id="cloneTr">-->
-                                <!--<td>156</td>-->
-                                <!--<td>3118311061</td>-->
-                                <!--<td>软件学院</td>-->
-                                <!--<td>2019-4-28</td>-->
-                                <!--<td>工作区</td>-->
-                                <!--<td>1</td>-->
-                                <!--&lt;!&ndash;<td><a href="#">修改</a> &nbsp <a href="#">删除</a></td>&ndash;&gt;-->
-                            <!--</tr>-->
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>156</td>
+                                <td>3118311061</td>
+                                <td>王松涛</td>
+                                <td>软件学院</td>
+                                <td>2019-4-28</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td><a href="#">修改</a> &nbsp <a href="#">删除</a></td>
+                            </tr>
 
                             </tbody>
                         </table>
                     </div>
                 </div>
-            <!--</div>-->
+            </div>
         </div>
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">

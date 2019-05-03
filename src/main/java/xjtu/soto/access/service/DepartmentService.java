@@ -11,4 +11,6 @@ public interface DepartmentService {
     void save(DepartmentEntity departmentEntity);
 
     List<DepartmentEntity> findAll();
+
+    DepartmentEntity findById(Long id);
 }

@@ -63,7 +63,9 @@ public class RecordController {
 
     @ResponseBody
     @GetMapping(value = "find/{params}")
-    public Map<String,Object> search1(@PathVariable String params, Model model) throws ParseException {
+    public Map<String, Object> search1(@PathVariable String params, Model model) throws ParseException {
+
+
         Map<String, String> paramMap = ParamsUtil.parse(params);
         Map<String, Object> res = new HashMap<>();
         res.put("msg", "error");
@@ -75,6 +77,9 @@ public class RecordController {
         String cardid = paramMap.get("cardid");
         Long fid = Long.valueOf(paramMap.get("fid"));
         Long locate = Long.valueOf(paramMap.get("locate"));
+
+
+        String departmentName = departmentService.findById(department).getName();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -93,9 +98,20 @@ public class RecordController {
                     type, role, department, cardid, fid, locate, time1, time2);
             res.put("msg", "success");
         }
+
+        for (RecordEntity record : recordEntityList) {
+            record.setDepartmentName(departmentName);
+
+        }
+
+
         res.put("recordList", recordEntityList);
-        return res ;
+
+        return res;
     }
+
+
+
 
 
 }

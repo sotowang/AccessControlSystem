@@ -24,4 +24,7 @@ public class RecordEntity {
     private Long department;
     private Long locate;
 
+    @Transient
+    private String departmentName;
+
 }
