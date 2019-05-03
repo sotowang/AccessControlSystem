@@ -66,21 +66,26 @@ public class RecordController {
     @ResponseBody
     @GetMapping(value = "findIndividual/{params}")
     public Map<String, Object> findIndividual(@PathVariable String params, Model model) throws ParseException {
-
-
         Map<String, String> paramMap = ParamsUtil.parse(params);
         Map<String, Object> res = new HashMap<>();
         res.put("msg", "error");
-
 
         String cardid = paramMap.get("cardid");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date time1 = sdf.parse(paramMap.get("time1"));
         Date time2 = sdf.parse(paramMap.get("time2"));
 
-        List<RecordEntity> recordEntityList = recordService.findByCardIdAndTimeBetween(cardid,time1,time2);
+        List<RecordEntity> recordEntityList = recordService.findByCardIdAndTimeBetween(cardid, time1, time2);
         res.put("msg", "success");
 
+        recordEntityList = tableSetting(recordEntityList);
+
+        res.put("recordList", recordEntityList);
+
+        return res;
+    }
+
+    private List<RecordEntity> tableSetting(List<RecordEntity> recordEntityList) {
         for (RecordEntity record : recordEntityList) {
             //设置部门名称
             Long departmentId = record.getDepartment();
@@ -109,11 +114,8 @@ public class RecordController {
             String timeString = smf.format(record.getTime());
 
             record.setTimeString(timeString);
-
         }
-        res.put("recordList", recordEntityList);
-
-        return res;
+        return recordEntityList;
     }
 
 
@@ -124,15 +126,21 @@ public class RecordController {
         return new ModelAndView("/record/individual", "recordModel", model);
     }
 
+    @GetMapping(value = "facilitySearch")
+    public ModelAndView facilitySearch(Model model) {
+        model.addAttribute("title", "流水信息管理");
+        model.addAttribute("subtitle", "门禁流水查询");
+        List<FacilityEntity> facilityEntityList = facilityService.findAll();
+        model.addAttribute("facilityList", facilityEntityList);
+        return new ModelAndView("/record/facility", "recordModel", model);
+    }
+
     @ResponseBody
     @GetMapping(value = "find/{params}")
     public Map<String, Object> search1(@PathVariable String params, Model model) throws ParseException {
-
-
         Map<String, String> paramMap = ParamsUtil.parse(params);
         Map<String, Object> res = new HashMap<>();
         res.put("msg", "error");
-
 
         Integer type = Integer.valueOf(paramMap.get("type"));
         Long role = Long.valueOf(paramMap.get("role"));
@@ -159,38 +167,29 @@ public class RecordController {
             res.put("msg", "success");
         }
 
-        for (RecordEntity record : recordEntityList) {
-            //设置部门名称
-            Long departmentId = record.getDepartment();
-            String departmentName = departmentService.findById(departmentId).getName();
-            record.setDepartmentName(departmentName);
+        recordEntityList = tableSetting(recordEntityList);
 
-            Long locateId = record.getLocate();
-            String locateName = thirdLocateService.findById(locateId).getAddress();
-            record.setLocateName(locateName);
-
-            String cardId = record.getCardid();
-            UserEntity user = userService.findUserByCardid(cardId);
-            String sex = user.getSex() == 1 ? "男" : "女";
-            record.setSex(sex);
-            record.setName(user.getName());
-
-            Long roleId = user.getIdentity();
-            String roleName = roleService.findById(roleId).getRole();
-            record.setRoleName(roleName);
-
-            Long fId = record.getFid();
-            String facilityName = facilityService.findById(fId).getName();
-            record.setFacilityName(facilityName);
-
-            SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String timeString = smf.format(record.getTime());
-
-            record.setTimeString(timeString);
-
-        }
         res.put("recordList", recordEntityList);
+        return res;
+    }
 
+    @ResponseBody
+    @GetMapping(value = "findFacility/{params}")
+    public Map<String, Object> findFacility(@PathVariable String params, Model model) throws ParseException {
+        Map<String, String> paramMap = ParamsUtil.parse(params);
+        Map<String, Object> res = new HashMap<>();
+        res.put("msg", "error");
+        Long fid = Long.valueOf(paramMap.get("fid"));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date time1 = sdf.parse(paramMap.get("time1"));
+        Date time2 = sdf.parse(paramMap.get("time2"));
+
+        List<RecordEntity> recordEntityList = recordService.findByFIdAndBetween(fid, time1, time2);
+        res.put("msg", "success");
+
+        recordEntityList = tableSetting(recordEntityList);
+
+        res.put("recordList", recordEntityList);
         return res;
     }
 

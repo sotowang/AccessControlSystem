@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${recordModel.title}"></title>
+    <div th:include="common_css :: common_css"></div>
+
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+<script type="text/javascript">
+    function search() {
+        $("#tbody1").empty();
+        var time1 = $("#time1").val();
+        var time2 = $("#time2").val();
+        var fid = $("#fid option:selected").val();
+        if ( time1 == "" || time2 == "" || fid == 0) {
+            alert("请检查参数！重新查询！");
+            return;
+        } else {
+            var params = $("#form2").serialize();
+            $.ajax({
+                url: "/record/findFacility/" + params,
+                type: 'get',
+                success: function (data) {
+                    document.getElementById("dataTable111").style.visibility = "visible";
+                    var recordList = data['recordList'];
+                    var tbody = document.getElementById("tbody1");
+                    for (index in recordList) {
+                        var obj = (recordList[index]);
+                        console.log(obj);
+                        var tr = document.createElement("tr");
+
+                        var tdFID = document.createElement("td");
+                        tdFID.textContent = obj['facilityName']
+
+                        var tdCardID = document.createElement("td");
+                        tdCardID.textContent = obj['cardid'];
+
+                        var tdName = document.createElement("td");
+                        tdName.textContent = obj['name'];
+
+
+                        var tdSex = document.createElement("td");
+                        tdSex.textContent = obj['sex'];
+
+                        var tdRole = document.createElement("td");
+                        tdRole.textContent = obj['roleName'];
+
+                        var tdDept = document.createElement("td");
+                        tdDept.textContent = obj['departmentName'];
+
+                        var tdTime = document.createElement("td");
+                        tdTime.textContent = obj['timeString'];
+
+
+                        var tdType = document.createElement("td");
+                        if (obj['type'] == "1") {
+                            tdType.textContent = "进";
+                        } else if (obj['type'] == "2") {
+                            tdType.textContent = "出";
+                        }
+
+                        var tdLocation = document.createElement("td");
+                        tdLocation.textContent = obj['locateName'];
+
+                        tr.appendChild(tdFID);
+                        tr.appendChild(tdCardID);
+                        tr.appendChild(tdName);
+                        tr.appendChild(tdSex);
+                        tr.appendChild(tdRole);
+                        tr.appendChild(tdDept);
+                        tr.appendChild(tdTime);
+                        tr.appendChild(tdType);
+                        tr.appendChild(tdLocation);
+                        tbody.appendChild(tr);
+                    }
+                },
+                error: function (data) {
+                    alert("查找失败！请重试！")
+                }
+            })
+        }
+
+    }
+
+</script>
+
+<div th:include="mainframe :: common"></div>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" th:text="${recordModel.title}">流水管理</a>
+            </li>
+            <li class="breadcrumb-item active" th:text="${recordModel.subtitle}">信息查询</li>
+        </ol>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-6 column">
+                    <form id="form2" class="form-group" role="form" action="/record/search">
+                        <div class="form-group" style="width: auto">
+                            <label for="fid" class="col-md-3 form-group">考勤机名称</label>
+
+                            <select id="fid" class="form-group col-md-5" name="fid">
+                                <option value="0" disabled="disabled" selected="selected">--请选择考勤机名称--</option>
+                                <option th:each="facility : ${recordModel.facilityList}"
+                                        th:value="${facility.fid}"
+                                        th:text="${facility.name}"
+                                        name="fid">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="width: auto">
+                            <label for="time1" class="col-md-3 form-group">起始时间</label>
+                            <input style="width: auto" type="date" col-md-3 name="time1" class="form-group col-md-5"
+                                   id="time1"/>
+                        </div>
+
+                        <div class="form-group" style="width: auto">
+                            <label for="time2" class="col-md-3 form-group">截止时间</label>
+                            <input style="width: auto" type="date" name="time2" class="form-group col-md-5" id="time2"/>
+                        </div>
+
+                        <div class="col-md-10 column text-xl-center">
+                            <button type="button" onclick="search()" class="btn btn-default btn-warning form-group">查询</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table style="visibility:hidden" class="table table-bordered text-center" id="dataTable111" width="100%"
+                       cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>设备</th>
+                        <th>卡号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>身份</th>
+                        <th>部门/学院</th>
+                        <th>刷卡时间</th>
+                        <th>类型</th>
+                        <th>工作区</th>
+                    </tr>
+                    <tbody id="tbody1">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <div th:include="common_js :: common_js"></div>
+</div>
+
+</body>
+</html>
