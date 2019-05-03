@@ -26,17 +26,18 @@
         if (locate == 0 || type == 0 || role == 0 || department == 0 || time1 == "" || time2 == "" || fid == 0) {
             alert("请检查参数！重新查询！");
             return;
-        }else {
+        } else {
             var params1 = $("#form1").serialize();
             var params2 = $("#form2").serialize();
-            var params = params1 +"&" + params2;
+            var params = params1 + "&" + params2;
             $.ajax({
-                url:"/record/find/"+params,
-                type:'get',
-                success:function(data){
+                url: "/record/find/" + params,
+                type: 'get',
+                success: function (data) {
+                    document.getElementById("dataTable111").style.visibility = "visible";
                     var recordList = data['recordList'];
                     var tbody = document.getElementById("tbody1");
-                    for(index in recordList){
+                    for (index in recordList) {
                         var obj = (recordList[index]);
                         console.log(obj);
                         var tr = document.createElement("tr");
@@ -67,7 +68,7 @@
                         var tdType = document.createElement("td");
                         if (obj['type'] == "1") {
                             tdType.textContent = "进";
-                        }else if (obj['type'] == "2") {
+                        } else if (obj['type'] == "2") {
                             tdType.textContent = "出";
                         }
 
@@ -85,13 +86,9 @@
                         tr.appendChild(tdLocation);
                         tbody.appendChild(tr);
                     }
-
-
-
                 },
                 error: function (data) {
                     alert("查找失败！请重试！")
-
                 }
             })
         }
@@ -99,15 +96,6 @@
     }
 
 </script>
-<!--{"locate":locate,-->
-<!--"type":type,-->
-<!--"role":role,-->
-<!--"department":department,-->
-<!--"timeFrom":time1,-->
-<!--"timeTo":time2,-->
-<!--"fid":fid,-->
-<!--"cardid":cardid-->
-<!--}-->
 
 <div th:include="mainframe :: common"></div>
 <div class="content-wrapper">
@@ -118,8 +106,6 @@
             </li>
             <li class="breadcrumb-item active" th:text="${recordModel.subtitle}">信息查询</li>
         </ol>
-
-
         <div class="container">
             <div class="row clearfix">
                 <div class="col-md-6 column">
@@ -150,7 +136,7 @@
                         <div class="form-group" style="width: auto">
                             <label for="role" class="col-md-3 form-group">身份</label>
                             <select id="role" class="form-group col-md-5" name="role">
-                                <option value="0" disabled="disabled" selected="selected" >--请选择身份--</option>
+                                <option value="0" disabled="disabled" selected="selected">--请选择身份--</option>
                                 <option th:each="role : ${recordModel.roleList}"
                                         th:value="${role.id}"
                                         th:text="${role.role}"
@@ -181,13 +167,13 @@
                             </div>
                         </div>
                         <div class="form-group" style="width: auto">
-                            <label for="time1" class="col-md-3 form-group">从时间</label>
+                            <label for="time1" class="col-md-3 form-group">起始时间</label>
                             <input style="width: auto" type="date" col-md-3 name="time1" class="form-group col-md-5"
                                    id="time1"/>
                         </div>
 
                         <div class="form-group" style="width: auto">
-                            <label for="time2" class="col-md-3 form-group">到时间</label>
+                            <label for="time2" class="col-md-3 form-group">截止时间</label>
                             <input style="width: auto" type="date" name="time2" class="form-group col-md-5" id="time2"/>
                         </div>
                         <div class="form-group" style="width: auto">
@@ -205,53 +191,36 @@
                     </form>
                 </div>
                 <div class="col-md-10 column text-xl-center">
-                        <button type="button" onclick="search()" class="btn btn-default btn-warning form-group">查询</button>
+                    <button type="button" onclick="search()" class="btn btn-default btn-warning form-group">查询</button>
                 </div>
-
             </div>
         </div>
-
-
-        <div class="card mb-3">
-            <!--<div class="card-header">-->
-                <div class="card-body">
-                    <div  class="table-responsive">
-                        <table class="table table-bordered text-center" id="dataTable111" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>设备</th>
-                                <th>卡号</th>
-                                <th>姓名</th>
-                                <th>性别</th>
-                                <th>身份</th>
-                                <th>部门/学院</th>
-                                <th>刷卡时间</th>
-                                <th>类型</th>
-                                <th>工作区</th>
-                            </tr>
-                            <tbody id="tbody1">
-                            <!--<tr id="cloneTr">-->
-                                <!--<td>156</td>-->
-                                <!--<td>3118311061</td>-->
-                                <!--<td>软件学院</td>-->
-                                <!--<td>2019-4-28</td>-->
-                                <!--<td>工作区</td>-->
-                                <!--<td>1</td>-->
-                                <!--&lt;!&ndash;<td><a href="#">修改</a> &nbsp <a href="#">删除</a></td>&ndash;&gt;-->
-                            <!--</tr>-->
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            <!--</div>-->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table style="visibility:hidden" class="table table-bordered text-center" id="dataTable111" width="100%"
+                       cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>设备</th>
+                        <th>卡号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>身份</th>
+                        <th>部门/学院</th>
+                        <th>刷卡时间</th>
+                        <th>类型</th>
+                        <th>工作区</th>
+                    </tr>
+                    <tbody id="tbody1">
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fa fa-angle-up"></i>
-        </a>
-        <div th:include="common_js :: common_js"></div>
     </div>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <div th:include="common_js :: common_js"></div>
 </div>
 
 </body>
