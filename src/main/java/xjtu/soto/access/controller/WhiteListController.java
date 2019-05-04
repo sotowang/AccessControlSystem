@@ -32,7 +32,8 @@ public class WhiteListController {
         WhitelistEntity whitelistEntity = whiteListService.findByID(id);
 
         model.addAttribute("whiteList", whitelistEntity);
-        model.addAttribute("title", "白名单修改");
+        model.addAttribute("title", "白名单管理");
+        model.addAttribute("subtitle", "白名单修改");
         return new ModelAndView("whitelist/modify", "whitelistModel", model);
     }
 

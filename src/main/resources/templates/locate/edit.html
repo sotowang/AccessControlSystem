@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>查看</title>
+    <title th:text="${locateModel.title}">查看</title>
 
     <!--公共css-->
     <div th:include="common_css :: common_css"></div>
@@ -63,17 +63,17 @@
     };
 
     function deleteTop(ele) {
-        var address = $('#'+ele+' option:selected').text();
-        var id = $('#'+ele+' option:selected').val();
-        if (id < 0 || id=="") {
+        var address = $('#' + ele + ' option:selected').text();
+        var id = $('#' + ele + ' option:selected').val();
+        if (id < 0 || id == "") {
             alert("请选择工作区！")
-        }else {
+        } else {
             $.ajax({
-                url: "/locate/delete"+ele+"/" + id,
+                url: "/locate/delete" + ele + "/" + id,
                 type: "get",
                 success: function (data) {
                     alert("删除成功！")
-                    window.location.href= "/locate/edit.html";
+                    window.location.href = "/locate/edit.html";
                 },
                 error: function (data) {
                     alert("删除失败！");
@@ -95,7 +95,7 @@
         }
         $.ajax({
             url: "/locate/save/second/" + topId + "-" + address,
-            type:"get",
+            type: "get",
             success: function (data) {
                 alert("二级工作区添加成功，请刷新页面！")
                 return;
@@ -107,6 +107,7 @@
         })
 
     }
+
     function addThirdLocate() {
         var topId = $('#top option:selected').val();
         var secondId = $('#second2 option:selected').val();
@@ -125,7 +126,7 @@
         }
         $.ajax({
             url: "/locate/save/third/" + secondId + "-" + address,
-            type:"get",
+            type: "get",
             success: function (data) {
                 alert("三级工作区添加成功，请刷新页面！")
                 return;
@@ -152,64 +153,56 @@
             </li>
             <li class="breadcrumb-item active" th:text="${locateModel.subtitle}">工作区设置</li>
         </ol>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <form action="/locate/edit" th:action="@{/locate}" method="POST" role="form">
-                        <div class="form-group">
-                            <label for="top">
-                                一级工作区：
-                            </label>
-                            <select id="top" class="form-group" onchange="setSelectTop()">
-                                <option value="0" disabled="disabled" selected="selected">--请选择一级工作区--</option>
-                                <option th:each="topAddress : ${locateModel.topLocateList}"
-                                        th:value="${topAddress.id}"
-                                        th:text="${topAddress.address}"
-                                        name="top">
-                                    [[${topAddress.address}]]
-                                </option>
-                            </select>
-                            <a onclick="deleteTop('top')" href="#">删除</a>
-                        </div>
-                        <div class="form-group">
-                            <label for="second2">
-                                二级工作区：
-                            </label>
-                            <select class="form-group" id="second2" name="second" onchange="setSelectSecond()">
-                            </select>
-                            <a onclick="deleteTop('second2')" href="#">删除</a>
-
-
-                        </div>
-                        <div class="form-group">
-                            <label for="third3">
-                                三级工作区：
-                            </label>
-                            <select id="third3" class="form-group">
-                            </select>
-                            <a onclick="deleteTop('third3')" href="#">删除</a>
-
-
-                        </div>
-                    </form>
+        <div class="card-body">
+            <div class="col-md-6 offset-md-3">
+                <form action="/locate/edit" th:action="@{/locate}" method="POST" role="form">
                     <div class="form-group">
-                        <input class="form-group" type="text" id="secondval">
-                        <a onclick="addSecondLocate()" href="#">添加二级工作区</a>
+                        <label for="top">
+                            一级工作区：
+                        </label>
+                        <select id="top" class="form-group" onchange="setSelectTop()">
+                            <option value="0" disabled="disabled" selected="selected">--请选择一级工作区--</option>
+                            <option th:each="topAddress : ${locateModel.topLocateList}"
+                                    th:value="${topAddress.id}"
+                                    th:text="${topAddress.address}"
+                                    name="top">
+                                [[${topAddress.address}]]
+                            </option>
+                        </select>
+                        <a onclick="deleteTop('top')" href="#">删除</a>
                     </div>
                     <div class="form-group">
-                        <input class="form-group" type="text" id="thirdval">
-                        <a onclick="addThirdLocate()" href="#">添加三级工作区</a>
+                        <label for="second2">
+                            二级工作区：
+                        </label>
+                        <select class="form-group" id="second2" name="second" onchange="setSelectSecond()">
+                        </select>
+                        <a onclick="deleteTop('second2')" href="#">删除</a>
+
+
                     </div>
+                    <div class="form-group">
+                        <label for="third3">
+                            三级工作区：
+                        </label>
+                        <select id="third3" class="form-group">
+                        </select>
+                        <a onclick="deleteTop('third3')" href="#">删除</a>
+
+
+                    </div>
+                </form>
+                <div class="form-group">
+                    <input class="form-group" type="text" id="secondval">
+                    <a onclick="addSecondLocate()" href="#">添加二级工作区</a>
                 </div>
-            </div>
-            <div class="card-footer small text-muted"
-                 th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}">版权保留xjtuse
+                <div class="form-group">
+                    <input class="form-group" type="text" id="thirdval">
+                    <a onclick="addThirdLocate()" href="#">添加三级工作区</a>
+                </div>
             </div>
         </div>
     </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">

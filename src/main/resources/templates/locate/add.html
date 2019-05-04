@@ -39,48 +39,31 @@
 
 <div class="content-wrapper">
     <div class="container-fluid">
-        <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="#" th:text="${locateModel.title}">门禁设置管理</a>
             </li>
             <li class="breadcrumb-item active" th:text="${locateModel.subtitle}">工作区设置</li>
         </ol>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <form action="/locate/edit" th:action="@{/locate}" method="POST" role="form">
-                        <div class="form-group">
-                            <label for="top22">
-                                一级工作区：
-                            </label>
-                            <input type="text" class="form-group form-control" id="top22" placeholder="添加一级工作区">
-                            <a href="#" onclick="saveLocate()">添加</a>
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <!--<input type="submit" value="提交" class="btn btn-primary">-->
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="card-footer small text-muted"
-                 th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}">版权保留xjtuse
+        <div class="card-body">
+            <div class="col-md-6 offset-md-3">
+                <form action="/locate/edit" th:action="@{/locate}" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="top22" class="form-inline">
+                            <input type="text" class="form-inline col-md-8" id="top22" placeholder="添加一级工作区">
+                            <a href="#" onclick="saveLocate()" class="offset-1">添加</a>
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
             </div>
         </div>
     </footer>
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>

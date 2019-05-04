@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>查看</title>
+    <title th:text="${whitelistModel.title}">查看</title>
 
     <!--公共css-->
     <div th:include="common_css :: common_css"></div>
@@ -15,60 +15,57 @@
 
 <div class="content-wrapper">
     <div class="container-fluid">
-        <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="#">白名单管理</a>
+                <a href="#" th:text="${whitelistModel.title}">白名单管理</a>
             </li>
-            <li class="breadcrumb-item active">白名单修改</li>
+            <li class="breadcrumb-item active" th:text="${whitelistModel.subtitle}">白名单修改</li>
         </ol>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <form action="/whitelist/modify/" th:action="@{/whitelist}" method="POST" th:object="${whitelistModel.whiteList}" role="form">
-                        <div class="form-group">
-                            <label for="wid">
-                                ID：
-                            </label>
-                            <input  readonly="readonly" type="text" id="wid" name="wid" th:value="*{wid}" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="cardid">
-                                卡号：
-                            </label>
-                            <input type="text" id="cardid" name="cardid" th:value="*{cardid}" class="form-control">
+        <div class="card-body">
+            <div class="col-md-6 offset-md-3">
+                <form action="/whitelist/modify/" th:action="@{/whitelist}" method="POST"
+                      th:object="${whitelistModel.whiteList}" role="form">
+                    <div class="form-group">
+                        <label for="wid" class="form-inline">&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;：
+                            <input readonly="readonly" type="text" id="wid" name="wid" th:value="*{wid}"
+                                   class="form-control col-md-8">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardid" class="form-inline">&nbsp;&nbsp;卡&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;：
+                            <input type="text" id="cardid" name="cardid" th:value="*{cardid}" class="form-control col-md-8">
+                        </label>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="startDate">
-                                开始日期
-                            </label>
-                            <input type="text" id="startDate" name="startDate" th:value="${#dates.format(whitelistModel.whiteList.startDate,'yyyy-MM-dd')}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate" class="form-inline">开始日期：
+                            <input type="text" id="startDate" name="startDate"
+                                   th:value="${#dates.format(whitelistModel.whiteList.startDate,'yyyy-MM-dd')}"
+                                   class="form-control col-md-8">
+                        </label>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="endDate">
-                                结束日期
-                            </label>
-                            <input type="text" id="endDate" name="endDate" th:value="${#dates.format(whitelistModel.whiteList.endDate,'yyyy-MM-dd')}" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="vip">
-                                VIP：
-                            </label>
-                                <!--<input type="text" id="sex" name="sex" value="1" class="form-control">-->
-                                <select id="vip" name="vip">
-                                    <option name="vip"  value="0" th:selected="*{vip} eq 0">否</option>
-                                    <option name="vip" value="1" th:selected="*{vip} eq 1">是</option>
-                                </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="提交" class="btn btn-primary">
 
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate" class="form-inline">结束日期：
+                            <input type="text" id="endDate" name="endDate"
+                                   th:value="${#dates.format(whitelistModel.whiteList.endDate,'yyyy-MM-dd')}"
+                                   class="form-control col-md-8">
+                        </label>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="vip" class="form-inline">&nbsp;&nbsp;V I P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：
+                            <select id="vip" name="vip" class="col-md-8">
+                                <option name="vip" value="0" th:selected="*{vip} eq 0">否</option>
+                                <option name="vip" value="1" th:selected="*{vip} eq 1">是</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <input type="submit" value="提交" class="btn btn-primary offset-7">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -85,7 +82,8 @@
         <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
