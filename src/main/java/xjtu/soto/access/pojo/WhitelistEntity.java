@@ -15,24 +15,21 @@ public class WhitelistEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long wid;
     private String cardid;
-    private String locate;
+    private Long locate;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     private Integer vip;
+
+    @Transient
+    private String locateName;
 
     public WhitelistEntity() {
     }
 
-    public WhitelistEntity( String cardid, String locate, Date startDate, Date endDate, Integer vip) {
-        this.cardid = cardid;
-        this.locate = locate;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.vip = vip;
-    }
+
 }

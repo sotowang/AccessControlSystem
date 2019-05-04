@@ -6,7 +6,7 @@
     <!--公共css-->
     <div th:include="common_css :: common_css"></div>
     <meta charset="UTF-8">
-    <title>白名单管理</title>
+    <title th:text="${whitelistModel.title}">白名单管理</title>
 </head>
 <body>
 
@@ -15,9 +15,9 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="#">白名单管理</a>
+            <a href="#" th:text="${whitelistModel.title}">白名单管理</a>
         </li>
-        <li class="breadcrumb-item active">白名单查询</li>
+        <li class="breadcrumb-item active" th:text="${whitelistModel.subtitle}">白名单查询</li>
     </ol>
     <!-- Example DataTables Card-->
     <div class="card mb-3">
@@ -38,7 +38,7 @@
                     <tr th:each="whitelist : ${whitelistModel.whiteLists}">
                         <td th:text="${whitelist.wid}">1</td>
                         <td th:text="${whitelist.cardid}">3118311061</td>
-                        <td th:text="${whitelist.locate}">软件学院</td>
+                        <td th:text="${whitelist.locateName}">软件学院</td>
                         <td th:text="${#dates.format(whitelist.startDate,'yyyy-MM-dd')}">2019-4-28</td>
                         <td th:text="${#dates.format(whitelist.endDate,'yyyy-MM-dd')}">2019-5-28</td>
                         <div th:switch="${whitelist.vip}">

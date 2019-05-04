@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title th:text="${whitelistMode.title}">查看</title>
+    <title th:text="${whitelistModel.title}">查看</title>
 
     <!--公共css-->
     <div th:include="common_css :: common_css"></div>
@@ -16,9 +16,9 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="#" th:text="${whitelistMode.title}">白名单管理</a>
+                <a href="#" th:text="${whitelistModel.title}">白名单管理</a>
             </li>
-            <li class="breadcrumb-item active" th:text="${whitelistMode.subtitle}">白名单添加</li>
+            <li class="breadcrumb-item active" th:text="${whitelistModel.subtitle}">白名单添加</li>
         </ol>
         <div class="">
             <div class="col-md-6 offset-md-3">
@@ -29,6 +29,17 @@
                             <input type="text" id="cardid" name="cardid" class="form-control col-md-8 ">
                         </label>
                     </div>
+
+                    <div class="form-group">
+                        <label for="locate" class="form-inline">&nbsp;&nbsp;地&nbsp;&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;：
+                            <select id="locate" name="locate" class="col-md-8">
+                                <option th:each="locate1 : ${whitelistModel.locateList}" name="locate"
+                                        th:value="${locate1.id}"
+                                        th:text="${locate1.address}">否</option>
+                            </select>
+                        </label>
+                    </div>
+
                     <div class="form-group">
                         <label for="startDate" class="form-inline col-md-auto">开始日：
                             <input type="date" id="startDate" name="startDate" class="form-control col-md-8 ">

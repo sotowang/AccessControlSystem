@@ -32,8 +32,19 @@
                         <label for="cardid" class="form-inline">&nbsp;&nbsp;卡&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;：
                             <input type="text" id="cardid" name="cardid" th:value="*{cardid}" class="form-control col-md-8">
                         </label>
-
                     </div>
+                    <div class="form-group">
+                        <label for="locate" class="form-inline">&nbsp;&nbsp;地&nbsp;&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;：
+                            <select id="locate" name="locate" class="col-md-8">
+                                <option th:each="locate1 : ${whitelistModel.locateList}" name="locate"
+                                        th:value="${locate1.id}"
+                                        th:text="${locate1.address}"
+                                        th:selected="*{locate} ==${locate1.id}">否</option>
+                            </select>
+                        </label>
+                    </div>
+
+
                     <div class="form-group">
                         <label for="startDate" class="form-inline">开始日期：
                             <input type="text" id="startDate" name="startDate"
