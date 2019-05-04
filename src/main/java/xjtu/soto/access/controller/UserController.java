@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import xjtu.soto.access.pojo.DepartmentEntity;
 import xjtu.soto.access.pojo.IdentityEntity;
+import xjtu.soto.access.pojo.PermissionEntity;
 import xjtu.soto.access.pojo.UserEntity;
+import xjtu.soto.access.service.AuthorityService;
 import xjtu.soto.access.service.DepartmentService;
 import xjtu.soto.access.service.RoleService;
 import xjtu.soto.access.service.UserService;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +32,8 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private AuthorityService authorityService;
 
     /**
      * 查询所有用户
@@ -40,6 +45,11 @@ public class UserController {
         List<UserEntity> userlist = userService.findAll();
 
         for (UserEntity user : userlist) {
+            List<PermissionEntity> authorities = new ArrayList<>();
+            Long authorityId = user.getPermission();
+            authorities.add(authorityService.getAuthorityById(authorityId));
+            user.setAuthorities(authorities);
+
             Long departmentId = user.getDepartment();
             DepartmentEntity departmentEntity = departmentService.findById(departmentId);
             String departmentName = departmentEntity.getName();
@@ -100,6 +110,11 @@ public class UserController {
      */
     @PostMapping(value = "save")
     public ModelAndView saveOrUpdateUser(UserEntity user) {
+        List<PermissionEntity> authorities = new ArrayList<>();
+        Long authorityId = user.getPermission();
+        authorities.add(authorityService.getAuthorityById(authorityId));
+        user.setAuthorities(authorities);
+
         String cardid = user.getCardid();
         UserEntity userEntity = userService.findUserByCardid(cardid);
         if (userEntity != null) {

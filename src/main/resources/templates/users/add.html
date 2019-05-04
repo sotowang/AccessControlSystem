@@ -13,68 +13,63 @@
 <div th:include="mainframe :: common"></div>
 
 <div class="content-wrapper">
-    <div class="container">
-        <!-- Breadcrumbs-->
-        <div class="row">
-            <div class="col-md-12">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="#" th:text="${userModel.title}">流水管理</a>
-                    </li>
-                    <li class="breadcrumb-item active" th:text="${userModel.subtitle}">信息查询</li>
-                </ol>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" th:text="${userModel.title}">流水管理</a>
+            </li>
+            <li class="breadcrumb-item active" th:text="${userModel.subtitle}">信息查询</li>
+        </ol>
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <form action="/users" th:action="@{/users/save}" method="POST"
                       role="form">
                     <div class="text-center">
-                        <label for="cardid" class="form-inline">账  号：
+                        <label for="cardid" class="form-inline">账 号：
                             <input type="text" id="cardid" name="cardid"
                                    class="form-control col-md-8">
                         </label>
                     </div>
                     <div>
-                        <label for="name" class="form-inline">姓  名：
+                        <label for="name" class="form-inline">姓 名：
                             <input type="text" id="name" name="name" class="form-control col-md-8">
                         </label>
                     </div>
                     <div>
-                        <label for="name" class="form-inline">密  码：
+                        <label for="name" class="form-inline">密 码：
                             <input type="password" id="password" name="password" class="form-control col-md-8">
                         </label>
                     </div>
 
-                    <label class="form-inline" for="sex">性  别：
+                    <label class="form-inline" for="sex">性 别：
                         <select id="sex" name="sex" class="form-control col-md-8">
-                            <option name="sex" value="1" >男</option>
-                            <option name="sex" value="2" >女</option>
+                            <option name="sex" value="1">男</option>
+                            <option name="sex" value="2">女</option>
                         </select>
                     </label>
 
-                    <label class="form-inline" for="permission">权  限：
+                    <label class="form-inline" for="permission">权 限：
                         <input type="text" id="permission" name="permission"
                                class="form-control col-md-8">
                     </label>
 
-                    <label class="form-inline" for="status">状  态：
-                        <select  id="status" name="status" class="form-control col-md-8">
+                    <label class="form-inline" for="status">状 态：
+                        <select id="status" name="status" class="form-control col-md-8">
                             <option th:value="1" th:text="正常">正常</option>
                             <option th:value="2" th:text="异常">异常</option>
                         </select>
                     </label>
 
-                    <label class="form-inline" for="identity">身  份：
+                    <label class="form-inline" for="identity">身 份：
 
-                        <select id="identity" name="identity"  class="form-control col-md-8">
+                        <select id="identity" name="identity" class="form-control col-md-8">
                             <option th:each="role:${userModel.roleList}"
                                     th:value="${role.id}" th:text="${role.role}">高
                             </option>
                         </select>
                     </label>
 
-                    <label class="form-inline" for="department">部  门：
+                    <label class="form-inline" for="department">部 门：
                         <select id="department" name="department"
                                 class="form-control col-md-8">
                             <option th:each="department:${userModel.departmentList}"
