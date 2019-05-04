@@ -10,71 +10,68 @@
 </head>
 
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body>
 
-<div th:include="mainframe :: common"></div>
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#" th:text="${facilityModel.title}">人员管理</a>
-            </li>
-            <li class="breadcrumb-item active" th:text="${facilityModel.subtitle}">信息查询</li>
-        </ol>
-        <div class="card mb-3">
-                <div class="col-md-12 text-xl-center column">
-                    <a th:href="@{~/facility/add}" th:text="新增设备">新增设备</a>
-                </div>
-            <div class="table-responsive">
-                <table class="table table-bordered text-center"  id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>名字</th>
-                        <th>地点</th>
-                        <th>开启时间</th>
-                        <th>关闭时间</th>
-                        <th>权限</th>
-                        <th>类型</th>
-                        <th>状态</th>
-                        <th>本机IP</th>
-                        <th>服务器IP</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!--<tr th:if="${userModel.userList.size()} eq 0">-->
-                    <!--<td colspan="3">没有用户信息！</td>-->
-                    <!--</tr>-->
-                    <tr th:each="facility : ${facilityModel.facilityList}">
-                        <td th:text="${facility.name}"></td>
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#" th:text="${facilityModel.title}">人员管理</a>
+        </li>
+        <li class="breadcrumb-item active" th:text="${facilityModel.subtitle}">信息查询</li>
+    </ol>
+    <div class="card mb-3">
+        <div class="col-md-12 text-xl-center column">
+            <a th:href="@{~/facility/add}" th:text="新增设备">新增设备</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>名字</th>
+                    <th>地点</th>
+                    <th>开启时间</th>
+                    <th>关闭时间</th>
+                    <th>权限</th>
+                    <th>类型</th>
+                    <th>状态</th>
+                    <th>本机IP</th>
+                    <th>服务器IP</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--<tr th:if="${userModel.userList.size()} eq 0">-->
+                <!--<td colspan="3">没有用户信息！</td>-->
+                <!--</tr>-->
+                <tr th:each="facility : ${facilityModel.facilityList}">
+                    <td th:text="${facility.name}"></td>
 
-                        <td th:text="${facility.address}"></td>
+                    <td th:text="${facility.address}"></td>
 
-                        <td th:text="${#dates.format(facility.startTime,'HH:mm:ss')}"></td>
-                        <td th:text="${#dates.format(facility.endTime,'HH:mm:ss')}"></td>
-                        <td th:text="${facility.permission}"></td>
+                    <td th:text="${#dates.format(facility.startTime,'HH:mm:ss')}"></td>
+                    <td th:text="${#dates.format(facility.endTime,'HH:mm:ss')}"></td>
+                    <td th:text="${facility.permission}"></td>
 
-                        <div th:switch="${facility.type}">
-                            <td th:case="1">单进</td>
-                            <td th:case="2">单出</td>
-                            <td th:case="3">双向</td>
-                        </div>
-                        <div th:switch="${facility.status}">
-                            <td th:case="1" style="color: red;">关闭</td>
-                            <td th:case="2" style="color:green" >开放</td>
-                        </div>
-                        <td th:text="${facility.ipAddr}"></td>
-                        <td th:text="${facility.serverIp}"></td>
-                        <td>
-                            <a th:text="编辑" th:href="@{'~/facility/edit/'+${facility.fid}}">编辑</a>
-                            <a th:text="删除" th:href="@{'~/facility/delete/'+${facility.fid}}">删除</a>
-                        </td>
-                    </tr>
+                    <div th:switch="${facility.type}">
+                        <td th:case="1">单进</td>
+                        <td th:case="2">单出</td>
+                        <td th:case="3">双向</td>
+                    </div>
+                    <div th:switch="${facility.status}">
+                        <td th:case="1" style="color: red;">关闭</td>
+                        <td th:case="2" style="color:green">开放</td>
+                    </div>
+                    <td th:text="${facility.ipAddr}"></td>
+                    <td th:text="${facility.serverIp}"></td>
+                    <td>
+                        <a th:text="编辑" th:href="@{'~/facility/edit/'+${facility.fid}}">编辑</a>
+                        <a th:text="删除" th:href="@{'~/facility/delete/'+${facility.fid}}">删除</a>
+                    </td>
+                </tr>
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

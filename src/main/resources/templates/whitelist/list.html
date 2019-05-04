@@ -8,69 +8,60 @@
     <meta charset="UTF-8">
     <title>白名单管理</title>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body>
 
-<div th:include="mainframe :: common"></div>
 
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#">白名单管理</a>
-            </li>
-            <li class="breadcrumb-item active">白名单查询</li>
-        </ol>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>卡号</th>
-                            <th>地点</th>
-                            <th>开始时间</th>
-                            <th>结束时间</th>
-                            <th>VIP</th>
-                            <th>操作</th>
-                        </tr>
-                        <tbody>
-                        <tr th:each="whitelist : ${whitelistModel.whiteLists}">
-                            <td th:text="${whitelist.wid}">1</td>
-                            <td th:text="${whitelist.cardid}">3118311061</td>
-                            <td th:text="${whitelist.locate}">软件学院</td>
-                            <td th:text="${#dates.format(whitelist.startDate,'yyyy-MM-dd')}">2019-4-28</td>
-                            <td th:text="${#dates.format(whitelist.endDate,'yyyy-MM-dd')}">2019-5-28</td>
-                            <div th:switch="${whitelist.vip}">
-                                <td th:case="1" style="color: red">是</td>
-                                <td th:case="0">否</td>
-                            </div>
-                            <td>
-                                <a th:href="@{'/whitelist/modify/'+${whitelist.wid}}">修改</a>
-                                <a th:href="@{'/whitelist/delete/'+${whitelist.wid}}">删除</a>
-                            </td>
-                        </tr>
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">白名单管理</a>
+        </li>
+        <li class="breadcrumb-item active">白名单查询</li>
+    </ol>
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>卡号</th>
+                        <th>地点</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>VIP</th>
+                        <th>操作</th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="whitelist : ${whitelistModel.whiteLists}">
+                        <td th:text="${whitelist.wid}">1</td>
+                        <td th:text="${whitelist.cardid}">3118311061</td>
+                        <td th:text="${whitelist.locate}">软件学院</td>
+                        <td th:text="${#dates.format(whitelist.startDate,'yyyy-MM-dd')}">2019-4-28</td>
+                        <td th:text="${#dates.format(whitelist.endDate,'yyyy-MM-dd')}">2019-5-28</td>
+                        <div th:switch="${whitelist.vip}">
+                            <td th:case="1" style="color: red">是</td>
+                            <td th:case="0">否</td>
+                        </div>
+                        <td>
+                            <a th:href="@{'/whitelist/modify/'+${whitelist.wid}}">修改</a>
+                            <a th:href="@{'/whitelist/delete/'+${whitelist.wid}}">删除</a>
+                        </td>
+                    </tr>
 
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
-            <div class="card-footer small text-muted" th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}" >版权保留xjtuse</div>
         </div>
     </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-    </a>
-    <!--公共js-->
-    <div th:include="common_js :: common_js"></div>
 </div>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!--公共js-->
+<div th:include="common_js :: common_js"></div>
 
 </body>
 </html>

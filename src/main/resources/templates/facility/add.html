@@ -9,110 +9,106 @@
     <div th:include="common_css :: common_css"></div>
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<div th:include="mainframe :: common"></div>
-
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#" th:text="${facilityModel.title}">流水管理</a>
-            </li>
-            <li class="breadcrumb-item active" th:text="${facilityModel.subtitle}">信息查询</li>
-        </ol>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <form action="/users" th:action="@{~/facility/save}" method="POST" role="form">
-                        <div class="form-group">
-                            <label for="name">
-                                名字：
-                            </label>
-                            <input  type="text" id="name" name="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="locate">
-                                地点：
-                            </label>
-                            <select id="locate" name="locate" class="form-group">
-                                <option th:each="address:${facilityModel.thirdLocateList}"
-                                        th:value="${address.id}"
-                                        th:text="${address.address}"
-                                </option>
-                            </select>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="startTime">
-                                开始时间(00：00：01)
-                            </label>
-                            <input readonly="readonly" type="time"   id="startTime" name="startTime"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="endTime">
-                                关闭时间（23：59：59）
-                            </label>
-                            <input readonly="readonly" type="time"   id="endTime" name="endTime"  class="form-control">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="permission">
-                                权限(1-10)：
-                            </label>
-                            <input type="text" id="permission" name="permission"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="type">
-                                类型：
-                            </label>
-                            <select id="type" name="type" class="form-group">
-                                <option  th:text="单进" th:value="1">单进</option>
-                                <option  th:text="单出" th:value="2">单出</option>
-                                <option  th:text="双向" th:value="3">双向</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="status">
-                                状态：
-                            </label>
-                            <select id="status" name="status"  class="form-group">
-                                <option  th:text="关闭"  th:value="1">关闭</option>
-                                <option  th:text="开放"  th:value="2">开放</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="ipAddr">
-                                本机IP：
-                            </label>
-                            <input type="text" id="ipAddr" name="ipAddr" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="serverIp">
-                                服务器IP：
-                            </label>
-                            <input type="text" id="serverIp" name="serverIp" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="提交" class="btn btn-primary">
-
-                        </div>
-                    </form>
+<body>
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#" th:text="${facilityModel.title}">流水管理</a>
+        </li>
+        <li class="breadcrumb-item active" th:text="${facilityModel.subtitle}">信息查询</li>
+    </ol>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form action="/users" th:action="@{~/facility/save}" method="POST" role="form">
+                <div class="form-group">
+                    <label for="name">
+                        名字：
+                    </label>
+                    <input type="text" id="name" name="name" class="form-control">
                 </div>
-            </div>
-    </div>
-    <footer class="sticky-footer">
-        <div class="container">
-            <div class="text-center">
-            </div>
+                <div class="form-group">
+                    <label for="locate">
+                        地点：
+                    </label>
+                    <select id="locate" name="locate" class="form-group">
+                        <option th:each="address:${facilityModel.thirdLocateList}"
+                                th:value="${address.id}"
+                                th:text="${address.address}"
+                        </option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="startTime">
+                        开始时间(00：00：01)
+                    </label>
+                    <input readonly="readonly" type="time" id="startTime" name="startTime" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="endTime">
+                        关闭时间（23：59：59）
+                    </label>
+                    <input readonly="readonly" type="time" id="endTime" name="endTime" class="form-control">
+
+                </div>
+                <div class="form-group">
+                    <label for="permission">
+                        权限(1-10)：
+                    </label>
+                    <input type="text" id="permission" name="permission" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="type">
+                        类型：
+                    </label>
+                    <select id="type" name="type" class="form-group">
+                        <option th:text="单进" th:value="1">单进</option>
+                        <option th:text="单出" th:value="2">单出</option>
+                        <option th:text="双向" th:value="3">双向</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">
+                        状态：
+                    </label>
+                    <select id="status" name="status" class="form-group">
+                        <option th:text="关闭" th:value="1">关闭</option>
+                        <option th:text="开放" th:value="2">开放</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ipAddr">
+                        本机IP：
+                    </label>
+                    <input type="text" id="ipAddr" name="ipAddr" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="serverIp">
+                        服务器IP：
+                    </label>
+                    <input type="text" id="serverIp" name="serverIp" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="提交" class="btn btn-primary">
+
+                </div>
+            </form>
         </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-    </a>
-    <!--公共js-->
-    <div th:include="common_js :: common_js"></div>
+    </div>
 </div>
+<footer class="sticky-footer">
+    <div class="container">
+        <div class="text-center">
+        </div>
+    </div>
+</footer>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!--公共js-->
+<div th:include="common_js :: common_js"></div>
 
 </body>
 

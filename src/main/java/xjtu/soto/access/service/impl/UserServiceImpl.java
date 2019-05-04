@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xjtu.soto.access.pojo.UserEntity;
@@ -15,7 +18,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService,UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
@@ -47,4 +50,10 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+
+        return (UserDetails) userRepository.findByName(username);
+    }
 }

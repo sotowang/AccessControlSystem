@@ -7,9 +7,7 @@
     <meta charset="UTF-8">
     <title>流水管理</title>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<div th:include="mainframe :: common"></div>
-<div class="content-wrapper">
+<body>
     <div class="container-fluid">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
@@ -54,24 +52,13 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer small text-muted" th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}" >版权保留xjtuse</div>
         </div>
     </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-        <div class="container">
-            <div class="text-center">
-                <small>Copyright © Your Website 2017 / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></small>
-            </div>
-        </div>
-    </footer>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>
     <div th:include="common_js :: common_js"></div>
-</div>
 
 </body>
 </html>

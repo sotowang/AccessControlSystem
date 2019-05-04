@@ -9,94 +9,91 @@
     <div th:include="common_css :: common_css"></div>
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<div th:include="mainframe :: common"></div>
+<body>
 
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#" th:text="${userModel.title}">流水管理</a>
-            </li>
-            <li class="breadcrumb-item active" th:text="${userModel.subtitle}">信息查询</li>
-        </ol>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <form action="/users" th:action="@{/users/save}" method="POST"
-                      role="form">
-                    <div class="text-center">
-                        <label for="cardid" class="form-inline">账 号：
-                            <input type="text" id="cardid" name="cardid"
-                                   class="form-control col-md-8">
-                        </label>
-                    </div>
-                    <div>
-                        <label for="name" class="form-inline">姓 名：
-                            <input type="text" id="name" name="name" class="form-control col-md-8">
-                        </label>
-                    </div>
-                    <div>
-                        <label for="name" class="form-inline">密 码：
-                            <input type="password" id="password" name="password" class="form-control col-md-8">
-                        </label>
-                    </div>
-
-                    <label class="form-inline" for="sex">性 别：
-                        <select id="sex" name="sex" class="form-control col-md-8">
-                            <option name="sex" value="1">男</option>
-                            <option name="sex" value="2">女</option>
-                        </select>
-                    </label>
-
-                    <label class="form-inline" for="permission">权 限：
-                        <input type="text" id="permission" name="permission"
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#" th:text="${userModel.title}">流水管理</a>
+        </li>
+        <li class="breadcrumb-item active" th:text="${userModel.subtitle}">信息查询</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form action="/users" th:action="@{/users/save}" method="POST"
+                  role="form">
+                <div class="text-center">
+                    <label for="cardid" class="form-inline">账 号：
+                        <input type="text" id="cardid" name="cardid"
                                class="form-control col-md-8">
                     </label>
-
-                    <label class="form-inline" for="status">状 态：
-                        <select id="status" name="status" class="form-control col-md-8">
-                            <option th:value="1" th:text="正常">正常</option>
-                            <option th:value="2" th:text="异常">异常</option>
-                        </select>
+                </div>
+                <div>
+                    <label for="name" class="form-inline">姓 名：
+                        <input type="text" id="name" name="name" class="form-control col-md-8">
                     </label>
-
-                    <label class="form-inline" for="identity">身 份：
-
-                        <select id="identity" name="identity" class="form-control col-md-8">
-                            <option th:each="role:${userModel.roleList}"
-                                    th:value="${role.id}" th:text="${role.role}">高
-                            </option>
-                        </select>
+                </div>
+                <div>
+                    <label for="name" class="form-inline">密 码：
+                        <input type="password" id="password" name="password" class="form-control col-md-8">
                     </label>
+                </div>
 
-                    <label class="form-inline" for="department">部 门：
-                        <select id="department" name="department"
-                                class="form-control col-md-8">
-                            <option th:each="department:${userModel.departmentList}"
-                                    th:value="${department.id}" th:text="${department.name}">部 门
-                            </option>
-                        </select>
-                    </label>
-                    <div class="col-md-6 offset-md-2">
-                        <input type="submit" value="提交" class="btn btn-primary form-control">
-                    </div>
-                </form>
-            </div>
+                <label class="form-inline" for="sex">性 别：
+                    <select id="sex" name="sex" class="form-control col-md-8">
+                        <option name="sex" value="1">男</option>
+                        <option name="sex" value="2">女</option>
+                    </select>
+                </label>
+
+                <label class="form-inline" for="permission">权 限：
+                    <input type="text" id="permission" name="permission"
+                           class="form-control col-md-8">
+                </label>
+
+                <label class="form-inline" for="status">状 态：
+                    <select id="status" name="status" class="form-control col-md-8">
+                        <option th:value="1" th:text="正常">正常</option>
+                        <option th:value="2" th:text="异常">异常</option>
+                    </select>
+                </label>
+
+                <label class="form-inline" for="identity">身 份：
+
+                    <select id="identity" name="identity" class="form-control col-md-8">
+                        <option th:each="role:${userModel.roleList}"
+                                th:value="${role.id}" th:text="${role.role}">高
+                        </option>
+                    </select>
+                </label>
+
+                <label class="form-inline" for="department">部 门：
+                    <select id="department" name="department"
+                            class="form-control col-md-8">
+                        <option th:each="department:${userModel.departmentList}"
+                                th:value="${department.id}" th:text="${department.name}">部 门
+                        </option>
+                    </select>
+                </label>
+                <div class="col-md-6 offset-md-2">
+                    <input type="submit" value="提交" class="btn btn-primary form-control">
+                </div>
+            </form>
         </div>
     </div>
-    <footer class="sticky-footer">
-        <div class="container">
-            <div class="text-center">
-            </div>
-        </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-    </a>
-    <!--公共js-->
-    <div th:include="common_js :: common_js"></div>
 </div>
+<!--<footer class="sticky-footer">-->
+<!--<div class="container">-->
+<!--<div class="text-center">-->
+<!--</div>-->
+<!--</div>-->
+<!--</footer>-->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!--公共js-->
+<div th:include="common_js :: common_js"></div>
 
 </body>
 

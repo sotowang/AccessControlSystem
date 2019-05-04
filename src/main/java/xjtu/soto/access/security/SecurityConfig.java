@@ -1,16 +1,35 @@
 package xjtu.soto.access.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import xjtu.soto.access.enums.UserPermissionEnum;
+import xjtu.soto.access.service.CustomUserService;
 
-@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String KEY = "xjtuse";
+
+    @Bean
+    UserDetailsService customUserService() {
+        return new CustomUserService();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserService());
+    }
+
     /**
      * 自定义配置
      * @param http
@@ -43,16 +62,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().sameOrigin();
     }
 
-    /**
-     * 认证信息管理
-     * @param auth
-     */
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("sotowang").password("123456")
-        .roles("1");
-
-    }
 
 }

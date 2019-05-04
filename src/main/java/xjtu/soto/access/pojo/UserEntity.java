@@ -4,14 +4,8 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import xjtu.soto.access.enums.UserIdentityEnum;
-import xjtu.soto.access.enums.UserPermissionEnum;
-import xjtu.soto.access.enums.UserStatusEnum;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -42,24 +36,27 @@ public class UserEntity implements UserDetails {
     private String roleName;
 
     @Transient
+    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<PermissionEntity> authorities;
+
 
 
     @Override
     //需要将List<PermissionEntity>转成List<SimpleGramtedAuthority>，否则前端拿不到角色列表名称
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        List<SimpleGrantedAuthority> simpleAuthorities = new ArrayList<>();
+        List<GrantedAuthority> auths = new ArrayList<>();
+        List<PermissionEntity> roles = this.authorities;
+//        for (PermissionEntity role : roles) {
+//            auths.add(new SimpleGrantedAuthority(role.getName()));
+//        }
 
-        for (GrantedAuthority authority : this.authorities) {
-            simpleAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
-        }
-        return simpleAuthorities;
+        return auths;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.cardid;
     }
 
     public void setAuthorities(List<PermissionEntity> authorities) {

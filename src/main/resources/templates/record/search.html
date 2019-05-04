@@ -8,7 +8,7 @@
     <div th:include="common_css :: common_css"></div>
 
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body>
 
 <script type="text/javascript">
     function search() {
@@ -97,131 +97,128 @@
 
 </script>
 
-<div th:include="mainframe :: common"></div>
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#" th:text="${recordModel.title}">流水管理</a>
-            </li>
-            <li class="breadcrumb-item active" th:text="${recordModel.subtitle}">信息查询</li>
-        </ol>
-        <div class="container">
-            <div class="row clearfix">
-                <div class="col-md-6 column">
-                    <form id="form1" class="form-group" role="form" action="/record/search">
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#" th:text="${recordModel.title}">流水管理</a>
+        </li>
+        <li class="breadcrumb-item active" th:text="${recordModel.subtitle}">信息查询</li>
+    </ol>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-6 column">
+                <form id="form1" class="form-group" role="form" action="/record/search">
+                    <div class="form-group" style="width: auto">
                         <div class="form-group" style="width: auto">
-                            <div class="form-group" style="width: auto">
-                                <label for="third_locate" class="col-md-3 form-group">工作区</label>
-                                <select id="third_locate" class="form-group col-md-5" name="locate">
-                                    <option value="0" disabled="disabled" selected="selected">--请选择三级工作区--</option>
-                                    <option th:each="thirdAddress : ${recordModel.thirdLocateList}"
-                                            th:value="${thirdAddress.id}"
-                                            th:text="${thirdAddress.address}"
-                                            name="third_locate">
-                                        --请选择三级工作区--
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" style="width: auto">
-                            <label for="type" class="col-md-3 form-group">出入标志</label>
-                            <select id="type" name="type" class="form-group col-md-5">
-                                <option value="0" disabled="disabled" selected="selected">--请选择出入标志--</option>
-                                <option value="1">进</option>
-                                <option value="2">出</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" style="width: auto">
-                            <label for="role" class="col-md-3 form-group">身份</label>
-                            <select id="role" class="form-group col-md-5" name="role">
-                                <option value="0" disabled="disabled" selected="selected">--请选择身份--</option>
-                                <option th:each="role : ${recordModel.roleList}"
-                                        th:value="${role.id}"
-                                        th:text="${role.role}"
-                                        name="role">
+                            <label for="third_locate" class="col-md-3 form-group">工作区</label>
+                            <select id="third_locate" class="form-group col-md-5" name="locate">
+                                <option value="0" disabled="disabled" selected="selected">--请选择三级工作区--</option>
+                                <option th:each="thirdAddress : ${recordModel.thirdLocateList}"
+                                        th:value="${thirdAddress.id}"
+                                        th:text="${thirdAddress.address}"
+                                        name="third_locate">
+                                    --请选择三级工作区--
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group" style="width: auto">
-                            <label for="department" class="col-md-3 form-group">部门</label>
-                            <select id="department" class="form-group col-md-5" name="department">
-                                <option value="0" disabled="disabled" selected="selected">--请选择部门--</option>
-                                <option th:each="department : ${recordModel.departmentList}"
-                                        th:value="${department.id}"
-                                        th:text="${department.name}"
-                                        name="department">
-                                </option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6 column">
-                    <form id="form2" class="form-group" role="form" action="/record/search">
-                        <div class="form-group" style="width: auto">
-                            <div class="form-group" style="width: auto">
-                                <label for="cardid" class="col-md-3 form-group">卡号</label>
-                                <input type="text" name="cardid" class="form-group col-md-5"
-                                       id="cardid" placeholder="选填" value="选填"/>
-                            </div>
-                        </div>
-                        <div class="form-group" style="width: auto">
-                            <label for="time1" class="col-md-3 form-group">起始时间</label>
-                            <input style="width: auto" type="date" col-md-3 name="time1" class="form-group col-md-5"
-                                   id="time1"/>
-                        </div>
+                    </div>
+                    <div class="form-group" style="width: auto">
+                        <label for="type" class="col-md-3 form-group">出入标志</label>
+                        <select id="type" name="type" class="form-group col-md-5">
+                            <option value="0" disabled="disabled" selected="selected">--请选择出入标志--</option>
+                            <option value="1">进</option>
+                            <option value="2">出</option>
+                        </select>
+                    </div>
 
-                        <div class="form-group" style="width: auto">
-                            <label for="time2" class="col-md-3 form-group">截止时间</label>
-                            <input style="width: auto" type="date" name="time2" class="form-group col-md-5" id="time2"/>
-                        </div>
-                        <div class="form-group" style="width: auto">
-                            <label for="fid" class="col-md-3 form-group">考勤机名称</label>
-
-                            <select id="fid" class="form-group col-md-5" name="fid">
-                                <option value="0" disabled="disabled" selected="selected">--请选择考勤机名称--</option>
-                                <option th:each="facility : ${recordModel.facilityList}"
-                                        th:value="${facility.fid}"
-                                        th:text="${facility.name}"
-                                        name="fid">
-                                </option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-10 column text-xl-center">
-                    <button type="button" onclick="search()" class="btn btn-default btn-warning form-group">查询</button>
-                </div>
+                    <div class="form-group" style="width: auto">
+                        <label for="role" class="col-md-3 form-group">身份</label>
+                        <select id="role" class="form-group col-md-5" name="role">
+                            <option value="0" disabled="disabled" selected="selected">--请选择身份--</option>
+                            <option th:each="role : ${recordModel.roleList}"
+                                    th:value="${role.id}"
+                                    th:text="${role.role}"
+                                    name="role">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="width: auto">
+                        <label for="department" class="col-md-3 form-group">部门</label>
+                        <select id="department" class="form-group col-md-5" name="department">
+                            <option value="0" disabled="disabled" selected="selected">--请选择部门--</option>
+                            <option th:each="department : ${recordModel.departmentList}"
+                                    th:value="${department.id}"
+                                    th:text="${department.name}"
+                                    name="department">
+                            </option>
+                        </select>
+                    </div>
+                </form>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table style="visibility:hidden" class="table table-bordered text-center" id="dataTable111" width="100%"
-                       cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>设备</th>
-                        <th>卡号</th>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>身份</th>
-                        <th>部门/学院</th>
-                        <th>刷卡时间</th>
-                        <th>类型</th>
-                        <th>工作区</th>
-                    </tr>
-                    <tbody id="tbody1">
-                    </tbody>
-                </table>
+            <div class="col-md-6 column">
+                <form id="form2" class="form-group" role="form" action="/record/search">
+                    <div class="form-group" style="width: auto">
+                        <div class="form-group" style="width: auto">
+                            <label for="cardid" class="col-md-3 form-group">卡号</label>
+                            <input type="text" name="cardid" class="form-group col-md-5"
+                                   id="cardid" placeholder="选填" value="选填"/>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: auto">
+                        <label for="time1" class="col-md-3 form-group">起始时间</label>
+                        <input style="width: auto" type="date" col-md-3 name="time1" class="form-group col-md-5"
+                               id="time1"/>
+                    </div>
+
+                    <div class="form-group" style="width: auto">
+                        <label for="time2" class="col-md-3 form-group">截止时间</label>
+                        <input style="width: auto" type="date" name="time2" class="form-group col-md-5" id="time2"/>
+                    </div>
+                    <div class="form-group" style="width: auto">
+                        <label for="fid" class="col-md-3 form-group">考勤机名称</label>
+
+                        <select id="fid" class="form-group col-md-5" name="fid">
+                            <option value="0" disabled="disabled" selected="selected">--请选择考勤机名称--</option>
+                            <option th:each="facility : ${recordModel.facilityList}"
+                                    th:value="${facility.fid}"
+                                    th:text="${facility.name}"
+                                    name="fid">
+                            </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-10 column text-xl-center">
+                <button type="button" onclick="search()" class="btn btn-default btn-warning form-group">查询</button>
             </div>
         </div>
     </div>
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-    </a>
-    <div th:include="common_js :: common_js"></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table style="visibility:hidden" class="table table-bordered text-center" id="dataTable111" width="100%"
+                   cellspacing="0">
+                <thead>
+                <tr>
+                    <th>设备</th>
+                    <th>卡号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>身份</th>
+                    <th>部门/学院</th>
+                    <th>刷卡时间</th>
+                    <th>类型</th>
+                    <th>工作区</th>
+                </tr>
+                <tbody id="tbody1">
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<div th:include="common_js :: common_js"></div>
 
 </body>
 </html>
