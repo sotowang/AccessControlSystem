@@ -45,7 +45,8 @@ public class WhiteListController {
     @GetMapping("/add")
     public ModelAndView add(Model model) {
         model.addAttribute("whitelist", new WhitelistEntity());
-        model.addAttribute("title", "添加白名单");
+        model.addAttribute("title", "白名单管理");
+        model.addAttribute("subtitle", "添加白名单");
         return new ModelAndView("whitelist/add", "whitelistMode", model);
     }
 }
