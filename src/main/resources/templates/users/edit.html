@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>查看</title>
+    <title th:text="${userModel.title}">查看</title>
     <!--公共css-->
     <div th:include="common_css :: common_css"></div>
 </head>
@@ -17,9 +17,9 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="#">流水管理</a>
+                <a href="#" th:text="${userModel.title}">流水管理</a>
             </li>
-            <li class="breadcrumb-item active">信息查询</li>
+            <li class="breadcrumb-item active" th:text="${userModel.subtitle}">信息查询</li>
         </ol>
         <div class="table-responsive">
             <form action="/users" th:action="@{/users}" method="POST" th:object="${userModel.user}" role="form">

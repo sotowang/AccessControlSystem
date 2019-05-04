@@ -8,6 +8,7 @@ import xjtu.soto.access.enums.UserStatusEnum;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 @Data
 @Entity
@@ -26,6 +27,12 @@ public class UserEntity {
     private Long identity;
 
     private String password;
+
+    @Transient
+    private String departmentName;
+
+    @Transient
+    private String roleName;
 
     public UserEntity() {
     }

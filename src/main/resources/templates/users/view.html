@@ -20,48 +20,49 @@
             </li>
             <li class="breadcrumb-item active" th:href="${userModel.subtitle}">信息查询</li>
         </ol>
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center"  id="dataTable1" width="100%" cellspacing="0">
-                        <thead>
-                        <tr class="text-center">
-                            <th>卡号</th>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>权限</th>
-                            <th>状态</th>
-                            <th>身份</th>
-                            <th>学院</th>
-                            <th>创建/修改时间</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="success">
-                            <td th:text="${userModel.user.cardid}"></td>
-                            <td th:text="${userModel.user.name}"></td>
-                            <div th:if="${userModel.user.sex} eq 1">
-                                <td>男</td>
-                            </div>
-                            <div th:if="${userModel.user.sex} eq 2">
-                                <td>女</td>
-                            </div>
-                            <td th:text="${userModel.user.permission}"></td>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" id="dataTable1" width="100%" cellspacing="0">
+                <thead>
+                <tr class="text-center">
+                    <th>卡号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>权限</th>
+                    <th>状态</th>
+                    <th>身份</th>
+                    <th>学院</th>
+                    <th>创建/修改时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="success">
+                    <td th:text="${userModel.user.cardid}"></td>
+                    <td th:text="${userModel.user.name}"></td>
+                    <div th:if="${userModel.user.sex} eq 1">
+                        <td>男</td>
+                    </div>
+                    <div th:if="${userModel.user.sex} eq 2">
+                        <td>女</td>
+                    </div>
+                    <td th:text="${userModel.user.permission}"></td>
 
-                            <div th:switch="${userModel.user.status}">
-                                <td th:case="1" style="color: green">正常</td>
-                                <td th:case="2" style="color: red;">异常</td>
-                            </div>
+                    <div th:switch="${userModel.user.status}">
+                        <td th:case="1" style="color: green">正常</td>
+                        <td th:case="2" style="color: red;">异常</td>
+                    </div>
 
 
-                            <td th:text="${userModel.user.identity}"></td>
-                            <td th:text="${userModel.department}"></td>
-                            <td th:text="${userModel.user.time}"></td>
-                            <td><a th:href="@{'/users/delete/'+${userModel.user.cardid}}">删除</a>
-                                <a th:href="@{'/users/modify/'+${userModel.user.cardid}}">修改</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                    <td th:text="${userModel.user.roleName}"></td>
+                    <td th:text="${userModel.user.departmentName}"></td>
+                    <td th:text="${userModel.user.time}"></td>
+                    <td><a th:href="@{'/users/delete/'+${userModel.user.cardid}}">删除</a>
+                        <a th:href="@{'/users/modify/'+${userModel.user.cardid}}">修改</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <footer class="sticky-footer">
         <div class="container">
