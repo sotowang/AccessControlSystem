@@ -12,6 +12,8 @@ import xjtu.soto.access.service.DepartmentService;
 import xjtu.soto.access.service.RoleService;
 import xjtu.soto.access.service.UserService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -100,10 +102,13 @@ public class UserController {
     public ModelAndView saveOrUpdateUser(UserEntity user) {
         String cardid = user.getCardid();
         UserEntity userEntity = userService.findUserByCardid(cardid);
-
-        user.setPassword(userEntity.getPassword());
-        user.setTime(userEntity.getTime());
-
+        if (userEntity != null) {
+            user.setPassword(userEntity.getPassword());
+            user.setTime(userEntity.getTime());
+        } else {
+            Date time = new Date();
+            user.setTime(time);
+        }
         UserEntity res = userService.save(user);
         return new ModelAndView("redirect:/users/list");
     }
@@ -148,6 +153,13 @@ public class UserController {
         model.addAttribute("user", new UserEntity());
         model.addAttribute("title", "人员管理");
         model.addAttribute("subtitle", "添加用户");
+
+
+        List<IdentityEntity> identityEntityList = roleService.findAll();
+        model.addAttribute("roleList", identityEntityList);
+
+        List<DepartmentEntity> departmentEntityList = departmentService.findAll();
+        model.addAttribute("departmentList", departmentEntityList);
         return new ModelAndView("users/add", "userModel", model);
     }
 
