@@ -22,48 +22,59 @@
             <li class="breadcrumb-item active" th:text="${userModel.subtitle}">信息查询</li>
         </ol>
         <div class="table-responsive">
-            <form action="/users" th:action="@{/users}" method="POST" th:object="${userModel.user}" role="form">
-                <div class="form-group">
-                    <label for="cardid">
-                        账号：
-                    </label>
-                    <input readonly="readonly" type="text" id="cardid" name="cardid" th:value="*{cardid}"
-                           class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="name">
-                        姓名：
-                    </label>
-                    <input type="text" id="name" name="name" th:value="*{name}" class="form-control">
+            <form action="/users" th:action="@{/users/save}" method="POST" th:object="${userModel.user}" role="form">
+                <div class="form-group col-md-12">
+                    <div>
+                        <label for="cardid" class="form-inline col-md-4">账 号：
+                            <input readonly="readonly" type="text" id="cardid" name="cardid" th:value="*{cardid}"
+                                   class="form-control col-md-8">
+                        </label>
+                    </div>
+                    <div>
+                        <label for="name" class="form-inline col-md-4">姓 名：
+                            <input type="text" id="name" name="name" th:value="*{name}" class="form-control col-md-8">
+                        </label>
+                    </div>
 
-                </div>
-                <div class="form-group">
-                    <label for="password">
-                        密码
+                    <label class="form-inline col-md-4" for="sex">性 别：
+                        <select id="sex" name="sex" class="form-control col-md-8">
+                            <option name="sex" value="1" th:selected="*{sex} eq 1">男</option>
+                            <option name="sex" value="2" th:selected="*{sex} eq 2">女</option>
+                        </select>
                     </label>
-                    <input type="password" id="password" name="password" th:value="*{password}" class="form-control">
 
-                </div>
-                <div class="form-group">
-                    <label for="department">
-                        部门/学院
+                    <label class="form-inline col-md-4" for="permission">权  限：
+                        <input type="text" id="permission" name="permission" th:value="*{permission}"
+                               class="form-control col-md-8">
                     </label>
-                    <input type="text" id="department" name="department" th:value="*{department}" class="form-control">
 
-                </div>
-                <div class="form-group">
-                    <label for="sex">
-                        性别：
+                    <label class="form-inline col-md-4" for="status">状  态：
+                        <select th:switch="*{status}" id="status" name="status">
+                            <option th:selected="*{status == 1}" th:value="1" th:text="正常">正常</option>
+                            <option th:selected="*{status == 2}" th:value="2" th:text="异常">异常</option>
+                        </select>
                     </label>
-                    <!--<input type="text" id="sex" name="sex" value="1" class="form-control">-->
-                    <select id="sex" name="sex">
-                        <option name="sex" value="1" th:selected="*{sex} eq 1">男</option>
-                        <option name="sex" value="2" th:selected="*{sex} eq 2">女</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="提交" class="btn btn-primary">
 
+                    <label class="form-inline col-md-4" for="identity">身  份：
+
+                        <select id="identity" name="identity" th:value="*{identity}" class="form-control col-md-8">
+                            <option th:each="role:${userModel.roleList}"
+                                    th:value="${role.id}" th:text="${role.role}"
+                                    th:selected="${role.id} == *{identity}">高中生</option>
+                        </select>
+                    </label>
+
+                    <label class="form-inline col-md-4" for="department">部  门：
+
+                        <select id="department" name="department" th:value="*{department}" class="form-control col-md-8">
+                            <option th:each="department:${userModel.departmentList}"
+                                    th:value="${department.id}" th:text="${department.name}"
+                                    th:selected="${department.id} == *{department}">部门</option>
+                        </select>
+                    </label>
+                    <div class="form-group col-md-6">
+                        <input type="submit" value="提交" class="btn btn-primary">
+                    </div>
                 </div>
             </form>
         </div>

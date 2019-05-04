@@ -33,7 +33,7 @@ public class UserController {
      * @param model
      * @return
      */
-    @GetMapping
+    @GetMapping(value = "list")
     public ModelAndView list(Model model) {
         List<UserEntity> userlist = userService.findAll();
 
@@ -96,10 +96,16 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping
+    @PostMapping(value = "save")
     public ModelAndView saveOrUpdateUser(UserEntity user) {
+        String cardid = user.getCardid();
+        UserEntity userEntity = userService.findUserByCardid(cardid);
+
+        user.setPassword(userEntity.getPassword());
+        user.setTime(userEntity.getTime());
+
         UserEntity res = userService.save(user);
-        return new ModelAndView("redirect:/users");
+        return new ModelAndView("redirect:/users/list");
     }
 
 
@@ -111,7 +117,7 @@ public class UserController {
     @GetMapping(value = "delete/{cardid}")
     public ModelAndView delete(@PathVariable("cardid") String id) {
         userService.deleteUserByCardid(id);
-        return new ModelAndView("redirect:/users");
+        return new ModelAndView("redirect:/users/list");
     }
 
     /**
@@ -127,6 +133,12 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("title", "人员管理");
         model.addAttribute("subtitle", "修改用户");
+
+        List<IdentityEntity> identityEntityList = roleService.findAll();
+        model.addAttribute("roleList", identityEntityList);
+
+        List<DepartmentEntity> departmentEntityList = departmentService.findAll();
+        model.addAttribute("departmentList", departmentEntityList);
 
         return new ModelAndView("users/edit", "userModel", model);
     }

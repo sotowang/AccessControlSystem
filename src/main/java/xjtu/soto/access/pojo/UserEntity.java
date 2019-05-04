@@ -34,34 +34,8 @@ public class UserEntity {
     @Transient
     private String roleName;
 
-    public UserEntity() {
-    }
-
-    public UserEntity(String cardid, String name, Integer sex, Long department, String password) {
-        this.time = new Date();
-
-        this.cardid = cardid;
-        this.name = name;
-        this.sex = sex;
-        this.department = department;
-        this.password = password;
-        this.permission = UserPermissionEnum.STUDENT.getCode();
-        this.status = UserStatusEnum.NORMAL.getCode();
-    }
 
 
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "time=" + time +
-                ", cardid='" + cardid + '\'' +
-                ", name='" + name + '\'' +
-                ", sex=" + sex +
-                ", status=" + status +
-                ", permission=" + permission +
-                ", department='" + department + '\'' +
-                ", identity=" + identity +
-                ", password='" + password + '\'' +
-                '}';
-    }
+
+
 }

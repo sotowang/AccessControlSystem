@@ -43,16 +43,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserEntity save(UserEntity user) {
-        String cardId = user.getCardid();
-        String name = user.getName();
-        String password = user.getPassword();
-        Long department = user.getDepartment();
-        int sex = user.getSex();
-        if (cardId == null) {
-            log.error("要保存的cardId为空");
-        }
-        UserEntity saveUser = new UserEntity(cardId, name, sex, department, password);
-        return userRepository.save(saveUser);
+        return userRepository.save(user);
     }
 
 
