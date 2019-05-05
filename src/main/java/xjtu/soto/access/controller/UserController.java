@@ -118,7 +118,6 @@ public class UserController {
         String cardid = user.getCardid();
         UserEntity userEntity = userService.findUserByCardid(cardid);
         if (userEntity != null) {
-            user.setPassword(userEntity.getPassword());
             user.setTime(userEntity.getTime());
         } else {
             Date time = new Date();
