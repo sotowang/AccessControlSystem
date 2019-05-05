@@ -30,13 +30,14 @@ public class MainController {
     @GetMapping("/login")
     public ModelAndView login(Model model) {
         model.addAttribute("msg", " ");
+        model.addAttribute("title", "门禁管理系统");
+
         return new ModelAndView("module/login","mainModel",model);
     }
 
     @GetMapping("/login-error")
     public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        model.addAttribute("errorMsg", "登陆失败，用户名或者密码错误");
+        model.addAttribute("errorMsg", "登陆失败，用户名或者密码错误!");
         return "module/login";
     }
 
@@ -47,11 +48,21 @@ public class MainController {
         if (user != null) {
             if (cardid.equals(user.getCardid()) &&
                     password.equals(user.getPassword())) {
-                return new ModelAndView("module/index");
+                String name = user.getName();
+                model.addAttribute("username", name);
+                return new ModelAndView("module/index", "indexModel", model);
             }
         }
-        model.addAttribute("msg", "登陆失败，请检查账号或密码");
+
+        model.addAttribute("msg", "登陆失败，用户名或者密码错误!");
+        model.addAttribute("title", "门禁管理系统");
+
         return new ModelAndView("module/login","mainModel",model);
+    }
+
+    @GetMapping("logout")
+    public ModelAndView logout(Model model) {
+        return new ModelAndView("/login");
     }
 
 
