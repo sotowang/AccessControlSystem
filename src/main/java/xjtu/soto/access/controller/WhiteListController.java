@@ -31,7 +31,10 @@ public class WhiteListController {
                 lists) {
             Long locateId = whitelist.getLocate();
             ThirdLocateEntity thirdLocateEntity = thirdLocateService.findById(locateId);
-            String locateName = thirdLocateEntity.getAddress();
+            String locateName = "NULL";
+            if (thirdLocateEntity != null) {
+                locateName = thirdLocateEntity.getAddress();
+            }
 
             whitelist.setLocateName(locateName);
         }

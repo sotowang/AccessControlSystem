@@ -31,8 +31,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="locate" class="form-inline">&nbsp;&nbsp;地&nbsp;&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;：
-                            <select id="locate" name="locate" class="col-md-8">
+                        <label for="locate" class="form-inline col-md-auto">地&nbsp;&nbsp;&nbsp;&nbsp;点：
+                            <select id="locate" name="locate" class="form-control col-md-8">
                                 <option th:each="locate1 : ${whitelistModel.locateList}" name="locate"
                                         th:value="${locate1.id}"
                                         th:text="${locate1.address}">否</option>
@@ -59,7 +59,7 @@
                         </label>
                     </div>
                     <div class="form-group col-md-6 offset-md-2">
-                        <input type="submit" value="提交" class="btn btn-primary">
+                        <input type="submit" value="提交" class="btn btn-primary offset-4">
                     </div>
                 </form>
             </div>

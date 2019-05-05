@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="locate" class="form-inline">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点：
-                        <select id="locate" name="locate" th:value="*{locate}" class="form-group col-md-8">
+                        <select id="locate" name="locate" th:value="*{locate}" class="form-control col-md-8">
                             <option th:each="locate1:${facilityModel.thirdLocateList}"
                                     th:value="${locate1.id}" th:text="${locate1.address}"
                                     th:selected="${locate1.id} == *{locate}">单进
@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group">
                     <label for="type" class="form-inline">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：
-                        <select id="type" name="type" th:value="*{type}" class="form-group col-md-8">
+                        <select id="type" name="type" th:value="*{type}" class="form-control col-md-8">
                             <option th:selected="*{type =='单进' }" th:value="1">单进</option>
                             <option th:selected="*{type =='单出' }" th:value="2">单出</option>
                             <option th:selected="*{type =='双向' }" th:value="3">双向</option>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <label for="status" class="form-inline">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：
-                        <select id="status" name="status" th:value="*{status}" class="form-group col-md-8">
+                        <select id="status" name="status" th:value="*{status}" class="form-control col-md-8">
                             <option th:selected="*{status ==1 }" th:value="1">关闭</option>
                             <option th:selected="*{status ==2 }" th:value="2">开放</option>
                         </select>
