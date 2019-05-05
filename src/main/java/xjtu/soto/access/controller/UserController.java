@@ -37,6 +37,7 @@ public class UserController {
 
     /**
      * 查询所有用户
+     *
      * @param model
      * @return
      */
@@ -52,12 +53,19 @@ public class UserController {
 
             Long departmentId = user.getDepartment();
             DepartmentEntity departmentEntity = departmentService.findById(departmentId);
-            String departmentName = departmentEntity.getName();
+            String departmentName = "NULL";
+            if (departmentEntity != null) {
+                departmentName = departmentEntity.getName();
+            }
             user.setDepartmentName(departmentName);
 
             Long roleId = user.getIdentity();
             IdentityEntity role = roleService.findById(roleId);
-            String roleName = role.getRole();
+
+            String roleName = "NULL";
+            if (role != null) {
+                roleName = role.getRole();
+            }
             user.setRoleName(roleName);
         }
         model.addAttribute("userList", userlist);
@@ -68,12 +76,13 @@ public class UserController {
 
     /**
      * 根据id查询用户
+     *
      * @param id
      * @param model
      * @return
      */
     @GetMapping("{id}")
-    public ModelAndView view(@PathVariable("id") String id, Model model ) {
+    public ModelAndView view(@PathVariable("id") String id, Model model) {
         UserEntity user = userService.findUserByCardid(id);
         Long departmentId = user.getDepartment();
         DepartmentEntity departmentEntity = departmentService.findById(departmentId);
@@ -91,6 +100,7 @@ public class UserController {
 
     /**
      * 获取创建表单页面
+     *
      * @param model
      * @return
      */
@@ -105,6 +115,7 @@ public class UserController {
 
     /**
      * 保存用户
+     *
      * @param user
      * @return
      */
@@ -130,6 +141,7 @@ public class UserController {
 
     /**
      * 删除用户
+     *
      * @param id
      * @return
      */
@@ -141,6 +153,7 @@ public class UserController {
 
     /**
      * 获取修改用户的界面
+     *
      * @param id
      * @param model
      * @return
