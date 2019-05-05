@@ -89,13 +89,22 @@ public class RecordController {
         for (RecordEntity record : recordEntityList) {
             //设置部门名称
             Long departmentId = record.getDepartment();
-            String departmentName = departmentService.findById(departmentId).getName();
-            record.setDepartmentName(departmentName);
+            DepartmentEntity department = departmentService.findById(departmentId);
+            if (department != null) {
+                String departmentName = department.getName();
+                record.setDepartmentName(departmentName);
+            } else {
+                record.setDepartmentName("NULL");
+            }
 
             Long locateId = record.getLocate();
-            String locateName = thirdLocateService.findById(locateId).getAddress();
-            record.setLocateName(locateName);
-
+            ThirdLocateEntity thirdLocateEntity = thirdLocateService.findById(locateId);
+            if (thirdLocateEntity != null) {
+                String locateName = thirdLocateEntity.getAddress();
+                record.setLocateName(locateName);
+            } else {
+                record.setLocateName("NULL");
+            }
             String cardId = record.getCardid();
             UserEntity user = userService.findUserByCardid(cardId);
             String sex = user.getSex() == 1 ? "男" : "女";
@@ -103,12 +112,18 @@ public class RecordController {
             record.setName(user.getName());
 
             Long roleId = user.getIdentity();
-            String roleName = roleService.findById(roleId).getRole();
-            record.setRoleName(roleName);
+            IdentityEntity identityEntity = roleService.findById(roleId);
+            if (identityEntity != null) {
+                String roleName = identityEntity.getRole();
+                record.setRoleName(roleName);
+            }
 
             Long fId = record.getFid();
-            String facilityName = facilityService.findById(fId).getName();
-            record.setFacilityName(facilityName);
+            FacilityEntity facilityEntity = facilityService.findById(fId);
+            if (facilityEntity != null) {
+                String facilityName = facilityEntity.getName();
+                record.setFacilityName(facilityName);
+            }
 
             SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String timeString = smf.format(record.getTime());
