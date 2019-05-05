@@ -17,8 +17,8 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
+    public ModelAndView login(Model model) {
+        return new ModelAndView("module/login");
     }
 
     @GetMapping("/login-error")
@@ -27,5 +27,6 @@ public class MainController {
         model.addAttribute("errorMsg", "登陆失败，用户名或者密码错误");
         return "login";
     }
+
 
 }
