@@ -6,33 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
-
 </head>
-<body>
-
-<div class=" navbar-collapse" id="navbarsContainer">
-    这里是主页hi
-    <!--登陆判断-->
-    <div sec:authorize="isAuthenticated()"
-         class="row">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <span class="nav-link" sec:authentication="name"></span>
-            </li>
-
-        </ul>
-        <form action="/logout" th:action="@{/logout}" method="post">
-
-            <input class="btn btn-outline-success" type="submit"
-                   value="退出">
-        </form>
-    </div>
-
-
-    <div sec:authorize="isAnonymous()">
-        <a href="/login" th:href="@{~/login}" class="btn btn-outline-success my-2 my-sm-0" type="submit">登陆</a>
-    </div>
-
-</div>
+<body background="http://photo.xjtu.edu.cn/photo/upload/slider/1341888000.jpg"  >
 </body>
 </html>
