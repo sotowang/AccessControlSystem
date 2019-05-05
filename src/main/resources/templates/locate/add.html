@@ -13,7 +13,8 @@
 
 <script type="text/javascript">
     function saveLocate() {
-        var text = $("#top22").val();
+        // var text = $("#top22").val();
+        var text = document.getElementById("top22").value;
         if (text == '') {
             alert('无内容！');
             return;
@@ -34,26 +35,29 @@
 
     };
 </script>
-    <div class="container-fluid">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#" th:text="${locateModel.title}">门禁设置管理</a>
-            </li>
-            <li class="breadcrumb-item active" th:text="${locateModel.subtitle}">工作区设置</li>
-        </ol>
-        <div class="card-body">
-            <div class="col-md-6 offset-md-3">
-                <form action="/locate/edit" th:action="@{/locate}" method="POST" role="form">
-                    <div class="form-group">
-                        <label for="top22" class="form-inline">
-                            <input type="text" class="form-inline col-md-8" id="top22" placeholder="添加一级工作区">
-                            <a href="#" onclick="saveLocate()" class="offset-1">添加</a>
-                        </label>
-                    </div>
-                </form>
-            </div>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#" th:text="${locateModel.title}">门禁设置管理</a>
+        </li>
+        <li class="breadcrumb-item active" th:text="${locateModel.subtitle}">工作区设置</li>
+    </ol>
+    <div class="card-body">
+        <div class="col-md-6 offset-md-3">
+            <form action="/locate/edit" th:action="@{/locate}" method="POST" role="form">
+                <div class="form-group">
+                    <label for="top22" class="form-inline">
+                        <input type="text" class="form-inline col-md-8" id="top22" placeholder="添加一级工作区">
+                        <a href="#" onclick="saveLocate()" class="offset-1">添加</a>
+                    </label>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+<!--公共js-->
+<div th:include="common_js :: common_js"></div>
 </body>
 
 </html>

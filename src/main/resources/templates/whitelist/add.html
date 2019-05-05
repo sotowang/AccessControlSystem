@@ -11,6 +11,19 @@
 </head>
 
 <body>
+<script type="text/javascript">
+    function checkWhitelist() {
+        var cardid = $("#cardid").val();
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
+        if (cardid == "" || startDate == "" || endDate == "") {
+            alert("请检查参数！");
+            return false;
+        }
+    }
+
+
+</script>
 
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -59,7 +72,7 @@
                         </label>
                     </div>
                     <div class="form-group col-md-6 offset-md-2">
-                        <input type="submit" value="提交" class="btn btn-primary offset-4">
+                        <input type="submit" onclick="return checkWhitelist()" value="提交" class="btn btn-primary offset-4">
                     </div>
                 </form>
             </div>

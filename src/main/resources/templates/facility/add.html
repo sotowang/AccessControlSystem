@@ -10,6 +10,18 @@
 </head>
 
 <body>
+<script type="text/javascript">
+
+    function checkFacility() {
+        var name = $("#name").val();
+        var permission = $("#permission").val();
+        if (name == "" || permission == "") {
+            alert("请检查参数！");
+            return false;
+        }
+    }
+
+</script>
 <div class="container-fluid">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -53,9 +65,9 @@
                 <div class="form-group">
                     <label for="type" class="form-inline">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：
                         <select id="type" name="type" class="form-control col-md-8">
+                            <option th:text="双向" th:value="3">双向</option>
                             <option th:text="单进" th:value="1">单进</option>
                             <option th:text="单出" th:value="2">单出</option>
-                            <option th:text="双向" th:value="3">双向</option>
                         </select>
                     </label>
 
@@ -63,8 +75,8 @@
                 <div class="form-group">
                     <label for="status" class="form-inline">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：
                         <select id="status" name="status" class="form-control col-md-8">
-                            <option th:text="关闭" th:value="1">关闭</option>
                             <option th:text="开放" th:value="2">开放</option>
+                            <option th:text="关闭" th:value="1">关闭</option>
                         </select>
                     </label>
                 </div>
@@ -79,7 +91,7 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="提交" class="btn btn-primary offset-md-3">
+                    <input type="submit" onclick=" return checkFacility()" value="提交" class="btn btn-primary offset-md-3">
                 </div>
             </form>
         </div>

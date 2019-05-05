@@ -33,7 +33,7 @@ public class LocateController {
         List<TopLocateEntity> topLocateEntities = topLocateService.findAll();
 //        List<SecondLocateEntity> secondLocateEntities = secondLocateService.findAll();
 //        List<ThirdLocateEntity> thirdLocateEntities = thirdLocateService.findAll();
-        model.addAttribute("title", "门禁设置管理");
+        model.addAttribute("title", "工作区设置管理");
         model.addAttribute("subtitle", "设置工作区");
         model.addAttribute("topLocateList", topLocateEntities);
 //        model.addAttribute("secondLocateList", secondLocateEntities);
@@ -43,7 +43,7 @@ public class LocateController {
 
     @GetMapping(value = "add")
     public ModelAndView add(Model model) {
-        model.addAttribute("title", "门禁设置管理");
+        model.addAttribute("title", "工作区设置管理");
         model.addAttribute("subtitle", "添加工作区");
         TopLocateEntity topLocateEntity = new TopLocateEntity();
         SecondLocateEntity secondLocateEntity = new SecondLocateEntity();
