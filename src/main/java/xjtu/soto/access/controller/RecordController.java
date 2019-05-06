@@ -41,7 +41,7 @@ public class RecordController {
 
         model.addAttribute("recordList", recordEntities);
 
-        return new ModelAndView("/record/list", "recordModel", model);
+        return new ModelAndView("record/list", "recordModel", model);
     }
 
 
@@ -59,7 +59,7 @@ public class RecordController {
 
         List<FacilityEntity> facilityEntityList = facilityService.findAll();
         model.addAttribute("facilityList", facilityEntityList);
-        return new ModelAndView("/record/search", "recordModel", model);
+        return new ModelAndView("record/search", "recordModel", model);
     }
 
 
@@ -138,7 +138,7 @@ public class RecordController {
     public ModelAndView individualSearch(Model model) {
         model.addAttribute("title", "流水信息管理");
         model.addAttribute("subtitle", "个人流水查询");
-        return new ModelAndView("/record/individual", "recordModel", model);
+        return new ModelAndView("record/individual", "recordModel", model);
     }
 
     @GetMapping(value = "facilitySearch")
@@ -147,7 +147,7 @@ public class RecordController {
         model.addAttribute("subtitle", "门禁流水查询");
         List<FacilityEntity> facilityEntityList = facilityService.findAll();
         model.addAttribute("facilityList", facilityEntityList);
-        return new ModelAndView("/record/facility", "recordModel", model);
+        return new ModelAndView("record/facility", "recordModel", model);
     }
 
     @ResponseBody

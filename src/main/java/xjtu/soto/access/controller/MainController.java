@@ -64,7 +64,7 @@ public class MainController {
     public ModelAndView logout(Model model) {
         model.addAttribute("title", "门禁管理系统");
         model.addAttribute("msg", " ");
-        return new ModelAndView("/module/login", "mainModel", model);
+        return new ModelAndView("module/login", "mainModel", model);
     }
 
 

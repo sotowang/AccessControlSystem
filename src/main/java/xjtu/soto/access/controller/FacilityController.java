@@ -47,7 +47,7 @@ public class FacilityController {
         model.addAttribute("facilityList", facilityEntityList);
 
 
-        return new ModelAndView("/facility/list", "facilityModel", model);
+        return new ModelAndView("facility/list", "facilityModel", model);
     }
 
     @GetMapping(value = "delete/{fid}")
@@ -123,7 +123,7 @@ public class FacilityController {
         model.addAttribute("thirdLocateList", thirdLocateEntityList);
 
 
-        return new ModelAndView("/facility/add", "facilityModel", model);
+        return new ModelAndView("facility/add", "facilityModel", model);
     }
 
 }

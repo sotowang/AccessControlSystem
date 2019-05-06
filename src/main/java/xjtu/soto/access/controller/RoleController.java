@@ -29,7 +29,7 @@ public class RoleController {
 
         model.addAttribute("roleList", identityEntities);
 
-        return new ModelAndView("/role/list", "roleModel", model);
+        return new ModelAndView("role/list", "roleModel", model);
     }
 
     @GetMapping(value = "delete/{id}")

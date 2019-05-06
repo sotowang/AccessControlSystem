@@ -104,7 +104,7 @@ public class UserController {
      * @param model
      * @return
      */
-    @GetMapping("/form")
+    @GetMapping("form")
     public ModelAndView createForm(Model model) {
         model.addAttribute("user", new UserEntity());
         model.addAttribute("title", "创建用户");

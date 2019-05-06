@@ -28,7 +28,7 @@ public class LocateController {
     @Autowired
     private ThirdLocateService thirdLocateService;
 
-    @GetMapping(value = "/edit")
+    @GetMapping(value = "edit")
     public ModelAndView edit(Model model) {
         List<TopLocateEntity> topLocateEntities = topLocateService.findAll();
 //        List<SecondLocateEntity> secondLocateEntities = secondLocateService.findAll();
