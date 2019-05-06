@@ -33,10 +33,12 @@
 
                     <ul class="sidenav-second-level collapse" id="second">
                         <li>
-                            <a href="./role/list.html" th:href="@{~/role/list}" onclick="navgateTo(event)">角色管理</a>
+                            <!--<a href="./role/list.html" th:href="@{~/role/list}" onclick="navgateTo(event)">角色管理</a>-->
+                            <a onclick="navgateTo(event,'/role/list')">角色管理</a>
                         </li>
                         <li>
-                            <a href="./department/add.html" th:href="@{~/department/add}" onclick="navgateTo(event)">学院（部门）管理</a>
+                            <!--<a href="./department/add.html" th:href="@{~/department/add}" onclick="navgateTo(event)">学院（部门）管理</a>-->
+                            <a  onclick="navgateTo(event,'/department/add')">学院（部门）管理</a>
                         </li>
                     </ul>
 
@@ -48,7 +50,8 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseComponents1">
                         <li>
-                            <a href="./facility/list.html" th:href="@{~/facility/list}" onclick="navgateTo(event)">设备管理</a>
+                            <!--<a href="./facility/list.html" th:href="@{~/facility/list}" onclick="navgateTo(event)">设备管理</a>-->
+                            <a onclick="navgateTo(event,'/facility/list')">设备管理</a>
                         </li>
                     </ul>
                 </li>
@@ -59,10 +62,12 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseComponents4">
                         <li>
-                            <a href="./locate/edit.html" th:href="@{~/locate/edit}" onclick="navgateTo(event)">工作区列表</a>
+                            <!--<a href="./locate/edit.html" th:href="@{~/locate/edit}" onclick="navgateTo(event)">工作区列表</a>-->
+                            <a  onclick="navgateTo(event,'/locate/edit')">工作区列表</a>
                         </li>
                         <li>
-                            <a target="mainframe" href="./locate/add.html" th:href="@{~/locate/add}" onclick="navgateTo(event)">工作区添加</a>
+                            <!--<a target="mainframe" href="./locate/add.html" th:href="@{~/locate/add}" onclick="navgateTo(event)">工作区添加</a>-->
+                            <a target="mainframe" onclick="navgateTo(event,'/locate/add')">工作区添加</a>
                         </li>
                     </ul>
                 </li>
@@ -76,10 +81,12 @@
 
                     <ul class="sidenav-second-level collapse" id="collapseComponents2">
                         <li>
-                            <a href="./whitelist/list.html" th:href="@{~/whitelist/list}" onclick="navgateTo(event)">白名单查询</a>
+                            <!--<a  href="./whitelist/list.html" th:href="@{~/whitelist/list}" onclick="navgateTo(event)">白名单查询</a>-->
+                            <a   onclick="navgateTo(event,'/whitelist/list')">白名单查询</a>
                         </li>
                         <li>
-                            <a href="./whitelist/add.html" th:href="@{~/whitelist/add}" onclick="navgateTo(event)">白名单添加</a>
+                            <!--<a href="./whitelist/add.html" th:href="@{~/whitelist/add}" onclick="navgateTo(event)">白名单添加</a>-->
+                            <a  onclick="navgateTo(event,'/whitelist/add')">白名单添加</a>
                         </li>
                     </ul>
                 </li>
@@ -91,10 +98,12 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseComponents">
                         <li>
-                            <a th:href="@{/users/list}" onclick="navgateTo(event)">查询用户</a>
+                            <!--<a th:href="@{/users/list}" onclick="navgateTo(event)">查询用户</a>-->
+                            <a   onclick="navgateTo(event,'/users/list')">查询用户</a>
                         </li>
                         <li>
-                            <a th:href="@{/users/add}" onclick="navgateTo(event)">添加用户</a>
+                            <!--<a th:href="@{/users/add}" onclick="navgateTo(event)">添加用户</a>-->
+                            <a  onclick="navgateTo(event,'/users/add')">添加用户</a>
                         </li>
                     </ul>
                 </li>
@@ -106,13 +115,16 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                         <li>
-                            <a href="./record/search.html" th:href="@{~/record/search}" onclick="navgateTo(event)">流水信息查询</a>
+                            <!--<a href="./record/search.html" th:href="@{~/record/search}" onclick="navgateTo(event)">流水信息查询</a>-->
+                            <a  onclick="navgateTo(event,'/record/search')">流水信息查询</a>
                         </li>
                         <li>
-                            <a href="./record/facility.html" th:href="@{~/record/facilitySearch}" onclick="navgateTo(event)">门禁流水统计</a>
+                            <!--<a href="./record/facility.html" th:href="@{~/record/facilitySearch}" onclick="navgateTo(event)">门禁流水统计</a>-->
+                            <a onclick="navgateTo(event,'/record/facilitySearch')">门禁流水统计</a>
                         </li>
                         <li>
-                            <a href="./record/individual.html" th:href="@{~/record/individualSearch}" onclick="navgateTo(event)">个人流水查询</a>
+                            <!--<a href="./record/individual.html" th:href="@{~/record/individualSearch}" onclick="navgateTo(event)">个人流水查询</a>-->
+                            <a   onclick="navgateTo(event,'/record/individualSearch')">个人流水查询</a>
                         </li>
                     </ul>
                 </li>
